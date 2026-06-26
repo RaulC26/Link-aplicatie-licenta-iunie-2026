@@ -1,300 +1,383 @@
-﻿import { useState, useEffect } from 'react'
-import { API_URL } from '../../utils/api'
-import { getToken } from '../../utils/auth'
-import ErrorMessage from '../ErrorMessage'
-import AdminDatePicker from './AdminDatePicker'
-
+﻿import { useState, useEffect } from "react";
+import { API_URL } from "../../utils/api";
+import { getToken } from "../../utils/auth";
+import ErrorMessage from "../ErrorMessage";
+import AdminDatePicker from "./AdminDatePicker";
 
 function AdminTournamentForm({ tournament, onSuccess, onCancel }) {
+  const [name, setName] = useState(tournament?.name || "");
+  const [description, setDescription] = useState(tournament?.description || "");
+  const [startDate, setStartDate] = useState(
+    tournament?.start_date
+      ? String(tournament.start_date).substring(0, 10)
+      : "",
+  );
+  const [endDate, setEndDate] = useState(
+    tournament?.end_date ? String(tournament.end_date).substring(0, 10) : "",
+  );
+  const [deadline, setDeadline] = useState(
+    tournament?.registration_deadline
+      ? String(tournament.registration_deadline).substring(0, 10)
+      : "",
+  );
+  const [maxTeams, setMaxTeams] = useState(tournament?.max_teams || 8);
+  const [teamSize, setTeamSize] = useState(tournament?.team_size || 5);
+  const [prizeInfo, setPrizeInfo] = useState(tournament?.prize_info || "");
+  const [status, setStatus] = useState(tournament?.status || "upcoming");
 
- const [name, setName] = useState(tournament?.name || '')
- const [description, setDescription] = useState(tournament?.description || '')
- const [startDate, setStartDate] = useState(
- tournament?.start_date ? String(tournament.start_date).substring(0, 10) : ''
- )
- const [endDate, setEndDate] = useState(
- tournament?.end_date ? String(tournament.end_date).substring(0, 10) : ''
- )
- const [deadline, setDeadline] = useState(
- tournament?.registration_deadline ? String(tournament.registration_deadline).substring(0, 10) : ''
- )
- const [maxTeams, setMaxTeams] = useState(tournament?.max_teams || 8)
- const [teamSize, setTeamSize] = useState(tournament?.team_size || 5)
- const [prizeInfo, setPrizeInfo] = useState(tournament?.prize_info || '')
- const [status, setStatus] = useState(tournament?.status || 'upcoming')
+  const [fieldId, setFieldId] = useState(
+    tournament?.field_id ? String(tournament.field_id) : "",
+  );
 
- const [fieldId, setFieldId] = useState(tournament?.field_id ? String(tournament.field_id) : '')
+  const [fields, setFields] = useState([]);
+  const [fieldsLoading, setFieldsLoading] = useState(true);
 
- const [fields, setFields] = useState([])
- const [fieldsLoading, setFieldsLoading] = useState(true)
+  const [format, setFormat] = useState(tournament?.format || "knockout");
 
- const [format, setFormat] = useState(tournament?.format || 'knockout')
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
- const [loading, setLoading] = useState(false)
- const [error, setError] = useState('')
+  const isEdit = !!tournament;
 
- const isEdit = !!tournament
+  const _nowLocal = new Date();
+  const todayStr = `${_nowLocal.getFullYear()}-${String(_nowLocal.getMonth() + 1).padStart(2, "0")}-${String(_nowLocal.getDate()).padStart(2, "0")}`;
 
+  const tournamentEndStr = tournament?.end_date
+    ? String(tournament.end_date).substring(0, 10)
+    : null;
+  const isPastTournament =
+    isEdit && tournamentEndStr && tournamentEndStr < todayStr;
 
- const _nowLocal = new Date()
- const todayStr = `${_nowLocal.getFullYear()}-${String(_nowLocal.getMonth() + 1).padStart(2, '0')}-${String(_nowLocal.getDate()).padStart(2, '0')}`
+  useEffect(() => {
+    async function loadFields() {
+      setFieldsLoading(true);
+      try {
+        const res = await fetch(API_URL + "/fields", {
+          headers: { Authorization: "Bearer " + getToken() },
+        });
+        const data = await res.json();
+        if (res.ok) setFields(data);
+      } catch {
+        console.error("Nu s-au putut încărca terenurile");
+      } finally {
+        setFieldsLoading(false);
+      }
+    }
+    loadFields();
+  }, []);
 
- const tournamentEndStr = tournament?.end_date ? String(tournament.end_date).substring(0, 10) : null
- const isPastTournament = isEdit && tournamentEndStr && tournamentEndStr < todayStr
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
 
- useEffect(() => {
- async function loadFields() {
- setFieldsLoading(true)
- try {
- const res = await fetch(API_URL + '/fields', {
- headers: { 'Authorization': 'Bearer ' + getToken() }
- })
- const data = await res.json()
- if (res.ok) setFields(data)
- } catch {
- console.error('Nu s-au putut încărca terenurile')
- } finally {
- setFieldsLoading(false)
- }
- }
- loadFields()
- }, [])
+    if (!name.trim()) {
+      setError("Numele turneului este obligatoriu.");
+      return;
+    }
+    if (!fieldId) {
+      setError("Locația (terenul) este obligatorie.");
+      return;
+    }
+    if (!startDate) {
+      setError("Data de start este obligatorie.");
+      return;
+    }
+    if (!endDate) {
+      setError("Data de final este obligatorie.");
+      return;
+    }
+    if (!deadline) {
+      setError("Termenul limită de înscriere este obligatoriu.");
+      return;
+    }
+    if (!maxTeams || Number(maxTeams) < 2) {
+      setError("Numărul de echipe trebuie să fie minim 2.");
+      return;
+    }
+    if (!teamSize || Number(teamSize) < 1) {
+      setError("Numărul de jucători per echipă trebuie să fie minim 1.");
+      return;
+    }
 
- async function handleSubmit(e) {
- e.preventDefault()
- setError('')
+    const originalStart = tournament?.start_date
+      ? String(tournament.start_date).substring(0, 10)
+      : "";
+    const originalDeadline = tournament?.registration_deadline
+      ? String(tournament.registration_deadline).substring(0, 10)
+      : "";
 
- if (!name.trim()) { setError('Numele turneului este obligatoriu.'); return }
- if (!fieldId) { setError('Locația (terenul) este obligatorie.'); return }
- if (!startDate) { setError('Data de start este obligatorie.'); return }
- if (!endDate) { setError('Data de final este obligatorie.'); return }
- if (!deadline) { setError('Termenul limită de înscriere este obligatoriu.'); return }
- if (!maxTeams || Number(maxTeams) < 2) { setError('Numărul de echipe trebuie să fie minim 2.'); return }
- if (!teamSize || Number(teamSize) < 1) { setError('Numărul de jucători per echipă trebuie să fie minim 1.'); return }
+    if (startDate < todayStr && startDate !== originalStart) {
+      setError("Data de start nu poate fi în trecut.");
+      return;
+    }
+    if (deadline < todayStr && deadline !== originalDeadline) {
+      setError("Termenul limită de înscriere nu poate fi în trecut.");
+      return;
+    }
 
+    if (endDate < startDate) {
+      setError("Data de final trebuie să fie după data de start.");
+      return;
+    }
 
- const originalStart = tournament?.start_date ? String(tournament.start_date).substring(0, 10) : ''
- const originalDeadline = tournament?.registration_deadline ? String(tournament.registration_deadline).substring(0, 10) : ''
+    if (deadline > startDate) {
+      setError(
+        "Termenul limită de înscriere trebuie să fie înainte de data de start.",
+      );
+      return;
+    }
 
- if (startDate < todayStr && startDate !== originalStart) {
- setError('Data de start nu poate fi în trecut.')
- return
- }
- if (deadline < todayStr && deadline !== originalDeadline) {
- setError('Termenul limită de înscriere nu poate fi în trecut.')
- return
- }
+    setLoading(true);
 
- if (endDate < startDate) {
- setError('Data de final trebuie să fie după data de start.')
- return
- }
+    try {
+      const url = isEdit
+        ? `${API_URL}/admin/tournaments/${tournament.id}`
+        : `${API_URL}/admin/tournaments`;
+      const method = isEdit ? "PUT" : "POST";
 
- if (deadline > startDate) {
- setError('Termenul limită de înscriere trebuie să fie înainte de data de start.')
- return
- }
+      const res = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getToken(),
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          description: description.trim(),
+          start_date: startDate,
+          end_date: endDate,
+          registration_deadline: deadline,
+          max_teams: Number(maxTeams),
+          team_size: Number(teamSize),
+          prize_info: prizeInfo.trim(),
+          status,
+          format,
+          field_id: fieldId ? Number(fieldId) : null,
+        }),
+      });
 
- setLoading(true)
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.mesaj || "Eroare la salvare.");
+        return;
+      }
 
- try {
- const url = isEdit
- ? `${API_URL}/admin/tournaments/${tournament.id}`
- : `${API_URL}/admin/tournaments`
- const method = isEdit ? 'PUT' : 'POST'
+      onSuccess();
+    } catch {
+      setError("Eroare conexiune server.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
- const res = await fetch(url, {
- method,
- headers: {
- 'Content-Type': 'application/json',
- 'Authorization': 'Bearer ' + getToken()
- },
- body: JSON.stringify({
- name: name.trim(),
- description: description.trim(),
- start_date: startDate,
- end_date: endDate,
- registration_deadline: deadline,
- max_teams: Number(maxTeams),
- team_size: Number(teamSize),
- prize_info: prizeInfo.trim(),
- status,
- format,
- field_id: fieldId ? Number(fieldId) : null
- })
- })
+  return (
+    <div className="admin-form-container">
+      <h3>
+        {isEdit ? ` Editează turneul: ${tournament.name}` : "➕ Turneu nou"}
+      </h3>
 
- const data = await res.json()
- if (!res.ok) { setError(data.mesaj || 'Eroare la salvare.'); return }
+      {error && <ErrorMessage message={error} />}
 
- onSuccess()
- } catch {
- setError('Eroare conexiune server.')
- } finally {
- setLoading(false)
- }
- }
+      <form onSubmit={handleSubmit}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "0 24px",
+          }}
+        >
+          <div>
+            <label className="form-label">Nume turneu *</label>
+            <input
+              className="form-input"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="ex: Cupa Primăverii 2026"
+            />
 
- return (
- <div className="admin-form-container">
- <h3>{isEdit ? ` Editează turneul: ${tournament.name}` : '➕ Turneu nou'}</h3>
+            <label className="form-label">Data de start *</label>
+            <AdminDatePicker
+              value={startDate}
+              onChange={(val) => {
+                setStartDate(val);
+                if (endDate && val > endDate) setEndDate("");
+                if (deadline && val < deadline) setDeadline("");
+              }}
+              min={todayStr}
+              placeholder="Selectează data de start"
+            />
 
- {error && <ErrorMessage message={error} />}
+            <label className="form-label">Data de final *</label>
+            <AdminDatePicker
+              value={endDate}
+              onChange={setEndDate}
+              min={startDate || todayStr}
+              placeholder="Selectează data de final"
+            />
 
- <form onSubmit={handleSubmit}>
- <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px' }}>
+            <label className="form-label">Termen limită înscrieri *</label>
+            <AdminDatePicker
+              value={deadline}
+              onChange={setDeadline}
+              min={todayStr}
+              max={startDate || undefined}
+              placeholder="Selectează termenul limită"
+            />
+          </div>
 
- <div>
- <label className="form-label">Nume turneu *</label>
- <input
- className="form-input"
- type="text"
- value={name}
- onChange={e => setName(e.target.value)}
- placeholder="ex: Cupa Primăverii 2026"
- />
+          <div>
+            <label className="form-label">Teren / Locație *</label>
+            <select
+              className="form-input"
+              value={fieldId}
+              onChange={(e) => setFieldId(e.target.value)}
+              disabled={fieldsLoading}
+            >
+              <option value="">
+                {fieldsLoading
+                  ? "Se încarcă terenurile..."
+                  : "— Fără teren specific —"}
+              </option>
+              {fields.map((f) => (
+                <option key={f.id} value={f.id}>
+                  {f.name} — {f.location}
+                </option>
+              ))}
+            </select>
 
- <label className="form-label">Data de start *</label>
- <AdminDatePicker
- value={startDate}
- onChange={val => {
- setStartDate(val)
- if (endDate && val > endDate) setEndDate('')
- if (deadline && val < deadline) setDeadline('')
- }}
- min={todayStr}
- placeholder="Selectează data de start"
- />
+            <label className="form-label">Număr maxim echipe *</label>
+            <input
+              className="form-input"
+              type="number"
+              min="2"
+              max="64"
+              value={maxTeams}
+              onChange={(e) => setMaxTeams(e.target.value)}
+            />
 
- <label className="form-label">Data de final *</label>
- <AdminDatePicker
- value={endDate}
- onChange={setEndDate}
- min={startDate || todayStr}
- placeholder="Selectează data de final"
- />
+            <label className="form-label">Jucători per echipă *</label>
+            <input
+              className="form-input"
+              type="number"
+              min="1"
+              max="15"
+              value={teamSize}
+              onChange={(e) => setTeamSize(e.target.value)}
+            />
 
- <label className="form-label">Termen limită înscrieri *</label>
- <AdminDatePicker
- value={deadline}
- onChange={setDeadline}
- min={todayStr}
- max={startDate || undefined}
- placeholder="Selectează termenul limită"
- />
- </div>
+            <label className="form-label">Format turneu *</label>
+            <select
+              className="form-input"
+              value={format}
+              onChange={(e) => setFormat(e.target.value)}
+            >
+              <option value="knockout">Eliminare directă</option>
+              <option value="groups_knockout">Grupe + Bracket</option>
+              <option value="league">Campionat (Ligă)</option>
+            </select>
 
- <div>
- <label className="form-label">Teren / Locație *</label>
- <select
- className="form-input"
- value={fieldId}
- onChange={e => setFieldId(e.target.value)}
- disabled={fieldsLoading}
- >
- <option value="">
- {fieldsLoading ? 'Se încarcă terenurile...' : '— Fără teren specific —'}
- </option>
- {fields.map(f => (
- <option key={f.id} value={f.id}>
- {f.name} — {f.location}
- </option>
- ))}
- </select>
+            <label className="form-label">Status</label>
+            {isEdit ? (
+              <>
+                <select
+                  className="form-input"
+                  value={status}
+                  onChange={(e) => {
+                    const newStatus = e.target.value;
+                    if (
+                      isPastTournament &&
+                      (newStatus === "upcoming" || newStatus === "active")
+                    ) {
+                      alert(
+                        ` Turneul s-a încheiat pe ${tournamentEndStr}. Nu îl mai poți readuce la "${newStatus === "upcoming" ? "Înregistrări deschise" : "Activ"}". Folosește "Finalizat" sau "Anulat".`,
+                      );
+                      return;
+                    }
+                    setStatus(newStatus);
+                  }}
+                >
+                  {!isPastTournament && (
+                    <option value="upcoming">Înregistrări deschise</option>
+                  )}
+                  {!isPastTournament && (
+                    <option value="active">Activ (în desfășurare)</option>
+                  )}
+                  <option value="completed">Finalizat</option>
+                  <option value="cancelled">Anulat</option>
+                </select>
+                {isPastTournament && (
+                  <p
+                    style={{
+                      fontSize: "0.78rem",
+                      color: "#92400e",
+                      background: "#fef3c7",
+                      border: "1px solid #fde68a",
+                      borderRadius: 8,
+                      padding: "6px 10px",
+                      marginTop: 6,
+                    }}
+                  >
+                    Turneul s-a încheiat pe {tournamentEndStr}. Statusul poate
+                    fi schimbat doar între „Finalizat" și „Anulat".
+                  </p>
+                )}
+              </>
+            ) : (
+              <div
+                className="form-input"
+                style={{
+                  background: "var(--bg)",
+                  color: "var(--text-muted)",
+                  cursor: "not-allowed",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                🟢 Înregistrări deschise
+              </div>
+            )}
+          </div>
+        </div>
 
- <label className="form-label">Număr maxim echipe *</label>
- <input
- className="form-input"
- type="number"
- min="2"
- max="64"
- value={maxTeams}
- onChange={e => setMaxTeams(e.target.value)}
- />
+        <label className="form-label">Premii / informații premii</label>
+        <input
+          className="form-input"
+          type="text"
+          value={prizeInfo}
+          onChange={(e) => setPrizeInfo(e.target.value)}
+          placeholder="ex: 1.000 lei + trofeu pentru locul 1"
+        />
 
- <label className="form-label">Jucători per echipă *</label>
- <input
- className="form-input"
- type="number"
- min="1"
- max="15"
- value={teamSize}
- onChange={e => setTeamSize(e.target.value)}
- />
+        <label className="form-label">Descriere</label>
+        <textarea
+          className="form-input"
+          rows={3}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Descriere detaliată a turneului..."
+          style={{
+            resize: "vertical",
+            fontFamily: "inherit",
+            fontSize: "0.95rem",
+          }}
+        />
 
- <label className="form-label">Format turneu *</label>
- <select
- className="form-input"
- value={format}
- onChange={e => setFormat(e.target.value)}
- >
- <option value="knockout">Eliminare directă</option>
- <option value="groups_knockout">Grupe + Bracket</option>
- <option value="league">Campionat (Ligă)</option>
- </select>
-
- <label className="form-label">Status</label>
- {isEdit ? (
- <>
- <select
- className="form-input"
- value={status}
- onChange={e => {
- const newStatus = e.target.value
- if (isPastTournament && (newStatus === 'upcoming' || newStatus === 'active')) {
- alert(` Turneul s-a încheiat pe ${tournamentEndStr}. Nu îl mai poți readuce la "${newStatus === 'upcoming' ? 'Înregistrări deschise' : 'Activ'}". Folosește "Finalizat" sau "Anulat".`)
- return
- }
- setStatus(newStatus)
- }}
- >
- {!isPastTournament && <option value="upcoming">Înregistrări deschise</option>}
- {!isPastTournament && <option value="active">Activ (în desfășurare)</option>}
- <option value="completed">Finalizat</option>
- <option value="cancelled">Anulat</option>
- </select>
- {isPastTournament && (
- <p style={{ fontSize: '0.78rem', color: '#92400e', background: '#fef3c7', border: '1px solid #fde68a', borderRadius: 8, padding: '6px 10px', marginTop: 6 }}>Turneul s-a încheiat pe {tournamentEndStr}. Statusul poate fi schimbat doar între „Finalizat" și „Anulat".
- </p>
- )}
- </>
- ) : (
- <div className="form-input" style={{ background: 'var(--bg)', color: 'var(--text-muted)', cursor: 'not-allowed', display: 'flex', alignItems: 'center' }}>
- 🟢 Înregistrări deschise
- </div>
- )}
- </div>
- </div>
-
- <label className="form-label">Premii / informații premii</label>
- <input
- className="form-input"
- type="text"
- value={prizeInfo}
- onChange={e => setPrizeInfo(e.target.value)}
- placeholder="ex: 1.000 lei + trofeu pentru locul 1"
- />
-
- <label className="form-label">Descriere</label>
- <textarea
- className="form-input"
- rows={3}
- value={description}
- onChange={e => setDescription(e.target.value)}
- placeholder="Descriere detaliată a turneului..."
- style={{ resize: 'vertical', fontFamily: 'inherit', fontSize: '0.95rem' }}
- />
-
- <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
- <button type="submit" className="btn-primary" disabled={loading}>
- {loading ? 'Se salvează...' : isEdit ? 'Salvează modificările' : 'Creează turneul'}
- </button>
- <button type="button" className="btn-secondary" onClick={onCancel}>Anulează
- </button>
- </div>
- </form>
- </div>
- )
+        <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+          <button type="submit" className="btn-primary" disabled={loading}>
+            {loading
+              ? "Se salvează..."
+              : isEdit
+                ? "Salvează modificările"
+                : "Creează turneul"}
+          </button>
+          <button type="button" className="btn-secondary" onClick={onCancel}>
+            Anulează
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
-export default AdminTournamentForm
+export default AdminTournamentForm;

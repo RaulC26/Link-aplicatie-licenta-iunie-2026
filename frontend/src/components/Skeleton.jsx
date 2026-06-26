@@ -9,60 +9,94 @@ export function SkeletonFieldCard() {
         <div className="skeleton skeleton-btn" />
       </div>
     </div>
-  )
+  );
 }
 
 export function SkeletonBookingCard() {
   return (
     <div className="skeleton-booking-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div className="skeleton skeleton-line" style={{ width: '45%', height: 18 }} />
-        <div className="skeleton skeleton-line" style={{ width: '22%', height: 24, borderRadius: 20 }} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "45%", height: 18 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "22%", height: 24, borderRadius: 20 }}
+        />
       </div>
       <div className="skeleton skeleton-line skeleton-line-med" />
       <div className="skeleton skeleton-line skeleton-line-short" />
       <div className="skeleton skeleton-line skeleton-line-short" />
-      <div className="skeleton skeleton-line" style={{ width: '30%', height: 16 }} />
-      <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+      <div
+        className="skeleton skeleton-line"
+        style={{ width: "30%", height: 16 }}
+      />
+      <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
         <div className="skeleton skeleton-btn" style={{ width: 130 }} />
         <div className="skeleton skeleton-btn" style={{ width: 100 }} />
       </div>
     </div>
-  )
+  );
 }
-
 
 export function SkeletonTournamentCard() {
   return (
     <div className="skeleton-tournament-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div className="skeleton skeleton-line" style={{ width: '55%', height: 20 }} />
-        <div className="skeleton skeleton-line" style={{ width: '20%', height: 24, borderRadius: 20 }} />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "55%", height: 20 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "20%", height: 24, borderRadius: 20 }}
+        />
       </div>
       <div className="skeleton skeleton-line skeleton-line-med" />
       <div className="skeleton skeleton-line skeleton-line-short" />
-      <div className="skeleton skeleton-line" style={{ width: '80%' }} />
-      <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-        <div className="skeleton skeleton-btn" style={{ width: 80, height: 32 }} />
-        <div className="skeleton skeleton-btn" style={{ width: 80, height: 32 }} />
+      <div className="skeleton skeleton-line" style={{ width: "80%" }} />
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <div
+          className="skeleton skeleton-btn"
+          style={{ width: 80, height: 32 }}
+        />
+        <div
+          className="skeleton skeleton-btn"
+          style={{ width: 80, height: 32 }}
+        />
       </div>
     </div>
-  )
+  );
 }
-
 
 export function SkeletonTournamentReg() {
   return (
-    <div className="skeleton-booking-card" style={{ borderLeft: '4px solid var(--border)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div className="skeleton skeleton-line" style={{ width: '50%', height: 18 }} />
-        <div className="skeleton skeleton-line" style={{ width: '18%', height: 22, borderRadius: 20 }} />
+    <div
+      className="skeleton-booking-card"
+      style={{ borderLeft: "4px solid var(--border)" }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "50%", height: 18 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "18%", height: 22, borderRadius: 20 }}
+        />
       </div>
       <div className="skeleton skeleton-line skeleton-line-med" />
       <div className="skeleton skeleton-line skeleton-line-short" />
-      <div className="skeleton skeleton-line" style={{ width: '35%' }} />
+      <div className="skeleton skeleton-line" style={{ width: "35%" }} />
     </div>
-  )
+  );
 }
 
 export function SkeletonAdminTable({ rows = 5, cols = 5 }) {
@@ -76,7 +110,15 @@ export function SkeletonAdminTable({ rows = 5, cols = 5 }) {
                 <td key={c}>
                   <div
                     className="skeleton skeleton-line"
-                    style={{ width: c === 0 ? '30px' : c === cols - 1 ? '60px' : `${55 + (c * 7) % 35}%`, height: 14 }}
+                    style={{
+                      width:
+                        c === 0
+                          ? "30px"
+                          : c === cols - 1
+                            ? "60px"
+                            : `${55 + ((c * 7) % 35)}%`,
+                      height: 14,
+                    }}
                   />
                 </td>
               ))}
@@ -85,74 +127,204 @@ export function SkeletonAdminTable({ rows = 5, cols = 5 }) {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 export function SkeletonProfile() {
   return (
     <div className="page-container">
-      <div style={{ position: 'relative', marginBottom: '16px' }}>
-        <div className="skeleton" style={{ height: 140, borderRadius: 'var(--radius-2xl)' }} />
-        <div className="skeleton" style={{
-          position: 'absolute', top: 90, left: 36,
-          width: 100, height: 100, borderRadius: 'var(--radius-lg)'
-        }} />
+      <div style={{ position: "relative", marginBottom: "16px" }}>
+        <div
+          className="skeleton"
+          style={{ height: 140, borderRadius: "var(--radius-2xl)" }}
+        />
+        <div
+          className="skeleton"
+          style={{
+            position: "absolute",
+            top: 90,
+            left: 36,
+            width: 100,
+            height: 100,
+            borderRadius: "var(--radius-lg)",
+          }}
+        />
       </div>
-      <div style={{ padding: '0 36px 26px', display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
-        <div className="skeleton skeleton-line" style={{ width: 200, height: 22 }} />
-        <div className="skeleton skeleton-line" style={{ width: 160, height: 14 }} />
-        <div className="skeleton skeleton-line" style={{ width: 120, height: 12 }} />
+      <div
+        style={{
+          padding: "0 36px 26px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          marginBottom: 24,
+        }}
+      >
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: 200, height: 22 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: 160, height: 14 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: 120, height: 12 }}
+        />
       </div>
-      <div className="skeleton" style={{ width: 280, height: 46, borderRadius: 'var(--radius-pill)', marginBottom: 22 }} />
-      <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '30px 36px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div
+        className="skeleton"
+        style={{
+          width: 280,
+          height: 46,
+          borderRadius: "var(--radius-pill)",
+          marginBottom: 22,
+        }}
+      />
+      <div
+        style={{
+          background: "var(--white)",
+          borderRadius: "var(--radius-lg)",
+          padding: "30px 36px",
+          border: "1px solid var(--border)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 18,
+        }}
+      >
         {[80, 60, 40, 70, 50].map((w, i) => (
-          <div key={i} className="skeleton skeleton-line" style={{ width: `${w}%`, height: 16 }} />
+          <div
+            key={i}
+            className="skeleton skeleton-line"
+            style={{ width: `${w}%`, height: 16 }}
+          />
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export function SkeletonFieldDetail() {
   return (
     <div className="page-container">
-      <div className="skeleton" style={{ height: 340, borderRadius: 'var(--radius-2xl)', marginBottom: 28 }} />
-      <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 28, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div className="skeleton skeleton-line" style={{ width: '40%', height: 24 }} />
-        <div className="skeleton" style={{ height: 72, borderRadius: 'var(--radius-xl)' }} />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+      <div
+        className="skeleton"
+        style={{
+          height: 340,
+          borderRadius: "var(--radius-2xl)",
+          marginBottom: 28,
+        }}
+      />
+      <div
+        style={{
+          background: "var(--white)",
+          borderRadius: "var(--radius-xl)",
+          padding: 28,
+          border: "1px solid var(--border)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+        }}
+      >
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "40%", height: 24 }}
+        />
+        <div
+          className="skeleton"
+          style={{ height: 72, borderRadius: "var(--radius-xl)" }}
+        />
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {Array.from({ length: 14 }).map((_, i) => (
-            <div key={i} className="skeleton" style={{ width: 72, height: 52, borderRadius: 'var(--radius-lg)' }} />
+            <div
+              key={i}
+              className="skeleton"
+              style={{
+                width: 72,
+                height: 52,
+                borderRadius: "var(--radius-lg)",
+              }}
+            />
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function SkeletonTournamentDetail() {
   return (
     <div className="page-container">
-      <div className="skeleton skeleton-line" style={{ width: 220, height: 14, marginBottom: 20 }} />
-      <div style={{ marginBottom: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <div className="skeleton skeleton-line" style={{ width: '50%', height: 32 }} />
-        <div className="skeleton skeleton-line" style={{ width: '70%', height: 16 }} />
+      <div
+        className="skeleton skeleton-line"
+        style={{ width: 220, height: 14, marginBottom: 20 }}
+      />
+      <div
+        style={{
+          marginBottom: 24,
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+        }}
+      >
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "50%", height: 32 }}
+        />
+        <div
+          className="skeleton skeleton-line"
+          style={{ width: "70%", height: 16 }}
+        />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 24, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div className="skeleton skeleton-line" style={{ width: '40%', height: 18 }} />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+        <div
+          style={{
+            background: "var(--white)",
+            borderRadius: "var(--radius-xl)",
+            padding: 24,
+            border: "1px solid var(--border)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 14,
+          }}
+        >
+          <div
+            className="skeleton skeleton-line"
+            style={{ width: "40%", height: 18 }}
+          />
           {[65, 80, 55, 70, 60, 45].map((w, i) => (
-            <div key={i} className="skeleton skeleton-line" style={{ width: `${w}%`, height: 14 }} />
+            <div
+              key={i}
+              className="skeleton skeleton-line"
+              style={{ width: `${w}%`, height: 14 }}
+            />
           ))}
         </div>
-        <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 24, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div className="skeleton skeleton-line" style={{ width: '50%', height: 18 }} />
+        <div
+          style={{
+            background: "var(--white)",
+            borderRadius: "var(--radius-xl)",
+            padding: 24,
+            border: "1px solid var(--border)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 14,
+          }}
+        >
+          <div
+            className="skeleton skeleton-line"
+            style={{ width: "50%", height: 18 }}
+          />
           {[70, 55, 80, 60, 65].map((w, i) => (
-            <div key={i} className="skeleton skeleton-line" style={{ width: `${w}%`, height: 14 }} />
+            <div
+              key={i}
+              className="skeleton skeleton-line"
+              style={{ width: `${w}%`, height: 14 }}
+            />
           ))}
           <div className="skeleton skeleton-btn" style={{ marginTop: 8 }} />
         </div>
       </div>
     </div>
-  )
+  );
 }

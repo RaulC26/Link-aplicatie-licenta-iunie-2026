@@ -1,29 +1,36 @@
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { isLoggedIn, isAdmin, removeToken, getFirstName } from '../utils/auth'
-import { Home, Trophy, Settings, User, CalendarDays, LogOut } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { isLoggedIn, isAdmin, removeToken, getFirstName } from "../utils/auth";
+import {
+  Home,
+  Trophy,
+  Settings,
+  User,
+  CalendarDays,
+  LogOut,
+} from "lucide-react";
 
 function Navbar() {
-  const navigate = useNavigate()
-  const logged = isLoggedIn()
-  const [firstName, setFirstName] = useState(logged ? getFirstName() : '')
+  const navigate = useNavigate();
+  const logged = isLoggedIn();
+  const [firstName, setFirstName] = useState(logged ? getFirstName() : "");
 
   useEffect(() => {
     function refreshFirstName() {
-      setFirstName(isLoggedIn() ? getFirstName() : '')
+      setFirstName(isLoggedIn() ? getFirstName() : "");
     }
-    window.addEventListener('user-updated', refreshFirstName)
-    window.addEventListener('storage', refreshFirstName)
+    window.addEventListener("user-updated", refreshFirstName);
+    window.addEventListener("storage", refreshFirstName);
     return () => {
-      window.removeEventListener('user-updated', refreshFirstName)
-      window.removeEventListener('storage', refreshFirstName)
-    }
-  }, [])
+      window.removeEventListener("user-updated", refreshFirstName);
+      window.removeEventListener("storage", refreshFirstName);
+    };
+  }, []);
 
   function handleLogout() {
-    removeToken()
-    navigate('/')
-    window.location.reload()
+    removeToken();
+    navigate("/");
+    window.location.reload();
   }
 
   return (
@@ -75,13 +82,17 @@ function Navbar() {
           </>
         ) : (
           <div className="navbar-auth-group">
-            <Link to="/login" className="navbar-btn-login">Intră în cont</Link>
-            <Link to="/register" className="navbar-btn-register">Înregistrare →</Link>
+            <Link to="/login" className="navbar-btn-login">
+              Intră în cont
+            </Link>
+            <Link to="/register" className="navbar-btn-register">
+              Înregistrare →
+            </Link>
           </div>
         )}
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -1,24 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
-import { isLoggedIn } from '../utils/auth'
+import { isLoggedIn } from "../utils/auth";
 
 function ProtectedRoute({ children }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) {
-      navigate('/login')
+      navigate("/login");
     }
-  }, []) 
+  }, []);
 
-  
   if (!isLoggedIn()) {
-    return null 
+    return null;
   }
 
-  return children
+  return children;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

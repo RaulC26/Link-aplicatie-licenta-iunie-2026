@@ -5,229 +5,417 @@
 /* Secțiunea de rezervare */
 .booking-section {
   background: var(--white);
-  border-radius: var(--radius-lg); padding: 32px 36px;
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 /* ===== BARA DE SELECTARE DATĂ (stil Booksport) ===== */
 .datepicker-bar {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius-xl); padding: 10px 12px;
-  box-shadow: var(--shadow-xs); margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 10px 12px;
+  box-shadow: var(--shadow-xs);
+  margin-bottom: 28px;
 }
 
 /* Butoanele de navigare stânga/dreapta */
 .datepicker-nav {
-  background: transparent; border: 1.5px solid var(--border);
+  background: transparent;
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-pill);
-  width: 34px; height: 34px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
   transition: all var(--t) var(--ease);
 }
 
 .datepicker-nav:hover:not(:disabled) {
-  border-color: var(--green); color: var(--green-dark);
+  border-color: var(--green);
+  color: var(--green-dark);
   background: var(--green-xlight);
 }
 
-.datepicker-nav:disabled { opacity: 0.28; cursor: not-allowed; }
+.datepicker-nav:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
 
 /* Grid cu 7 zile */
 .datepicker-days {
-  display: grid; grid-template-columns: repeat(7, 1fr);
-  gap: 3px; flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  flex: 1;
 }
 
 /* Butonul individual pentru o zi */
 .datepicker-day {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 1px; padding: 8px 4px; min-height: 58px;
-  border: 1.5px solid transparent; border-radius: var(--radius);
-  background: transparent; cursor: pointer;
-  font-family: inherit; transition: all var(--t) var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 8px 4px;
+  min-height: 58px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--t) var(--ease);
 }
 
 .datepicker-day:hover:not(:disabled) {
-  background: var(--green-xlight); border-color: #bbf7d0;
+  background: var(--green-xlight);
+  border-color: #bbf7d0;
 }
 
 /* Textul "Lun", "Mar", etc. */
 .dp-day-name {
-  font-size: 0.7rem; font-weight: 700;
-  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 /* Data DD.MM */
 .dp-day-date {
-  font-size: 0.88rem; font-weight: 700; color: var(--text-2);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-2);
 }
 
 /* Label "astăzi" sub data de azi */
 .dp-day-label {
-  font-size: 0.6rem; font-weight: 700;
-  color: var(--green-dark); text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  text-transform: uppercase;
   letter-spacing: 0.2px;
 }
 
 /* Ziua de azi (nemarcată ca selectată) */
-.datepicker-day-today .dp-day-name { color: var(--green-dark); }
-.datepicker-day-today .dp-day-date { color: var(--green-dark); }
+.datepicker-day-today .dp-day-name {
+  color: var(--green-dark);
+}
+.datepicker-day-today .dp-day-date {
+  color: var(--green-dark);
+}
 
 /* Ziua selectată — gradient verde */
 .datepicker-day-selected {
-  background: linear-gradient(135deg, var(--green), var(--green-dark)) !important;
+  background: linear-gradient(
+    135deg,
+    var(--green),
+    var(--green-dark)
+  ) !important;
   border-color: var(--green-dark) !important;
   box-shadow: 0 4px 14px var(--green-glow);
 }
 
 .datepicker-day-selected .dp-day-name,
 .datepicker-day-selected .dp-day-date,
-.datepicker-day-selected .dp-day-label { color: var(--white) !important; }
+.datepicker-day-selected .dp-day-label {
+  color: var(--white) !important;
+}
 
 /* Zilele trecute — grizate, dezactivate */
-.datepicker-day-past { opacity: 0.3; cursor: not-allowed; }
-.datepicker-day-past .dp-day-date { color: var(--text-light); }
+.datepicker-day-past {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.datepicker-day-past .dp-day-date {
+  color: var(--text-light);
+}
 
 /* Responsive — pe mobile textul se micșorează */
 @media (max-width: 640px) {
-  .datepicker-bar { padding: 8px 6px; gap: 4px; }
-  .datepicker-day { padding: 6px 2px; min-height: 50px; }
-  .dp-day-name { font-size: 0.6rem; }
-  .dp-day-date { font-size: 0.76rem; }
-  .datepicker-nav { width: 28px; height: 28px; }
+  .datepicker-bar {
+    padding: 8px 6px;
+    gap: 4px;
+  }
+  .datepicker-day {
+    padding: 6px 2px;
+    min-height: 50px;
+  }
+  .dp-day-name {
+    font-size: 0.6rem;
+  }
+  .dp-day-date {
+    font-size: 0.76rem;
+  }
+  .datepicker-nav {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 /* Selector dată */
 .date-picker-row {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 28px; padding-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--bg);
 }
 
 .date-picker-row label {
-  font-weight: 800; font-size: 0.78rem; color: var(--text-2);
-  white-space: nowrap; text-transform: uppercase; letter-spacing: 0.4px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
 .date-input {
-  padding: 9px 16px; border: 1.5px solid var(--border);
-  border-radius: var(--radius-pill); font-size: 0.88rem;
-  outline: none; cursor: pointer;
+  padding: 9px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  outline: none;
+  cursor: pointer;
   transition: all var(--t) var(--ease);
-  font-family: inherit; background: var(--bg); color: var(--text);
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text);
 }
 
-.date-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+.date-input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
 
 /* ===== GRID SLOTURI ===== */
 .slots-grid {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 .slot-btn {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 10px 18px; border-radius: var(--radius-pill);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
   border: 1.5px solid transparent;
-  font-size: 0.88rem; font-weight: 700;
-  cursor: pointer; transition: all var(--t) var(--ease);
-  white-space: nowrap; min-width: 82px;
-  font-family: inherit; position: relative;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t) var(--ease);
+  white-space: nowrap;
+  min-width: 82px;
+  font-family: inherit;
+  position: relative;
 }
 
-.slot-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.slot-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
 
-.slot-end-time { font-size: 0.65rem; font-weight: 500; opacity: 0.7; margin-top: 2px; }
+.slot-end-time {
+  font-size: 0.65rem;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-top: 2px;
+}
 
-.slot-free { background: var(--green-xlight); color: #15803d; border-color: #bbf7d0; }
-.slot-free:hover { background: var(--green-light); border-color: var(--green); }
+.slot-free {
+  background: var(--green-xlight);
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+.slot-free:hover {
+  background: var(--green-light);
+  border-color: var(--green);
+}
 
-.slot-occupied { background: #f9fafb; color: #9ca3af; border-color: #f3f4f6; cursor: not-allowed; opacity: 0.6; }
+.slot-occupied {
+  background: #f9fafb;
+  color: #9ca3af;
+  border-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 
 .slot-selected {
   background: linear-gradient(135deg, var(--indigo), var(--indigo-dark));
-  color: var(--white); border-color: var(--indigo-dark);
-  box-shadow: 0 0 0 3px var(--indigo-glow), 0 4px 14px var(--indigo-glow);
+  color: var(--white);
+  border-color: var(--indigo-dark);
+  box-shadow:
+    0 0 0 3px var(--indigo-glow),
+    0 4px 14px var(--indigo-glow);
 }
 
 /* ===== LEGENDĂ ===== */
 .slots-legend {
-  display: flex; gap: 20px; margin-bottom: 22px;
-  font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 22px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
 }
 
-.legend-item { display: flex; align-items: center; gap: 7px; font-weight: 500; }
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+}
 
-.legend-dot { width: 12px; height: 12px; border-radius: 4px; }
-.dot-free     { background: var(--green); }
-.dot-occupied { background: #d1d5db; }
-.dot-selected { background: var(--indigo); }
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+.dot-free {
+  background: var(--green);
+}
+.dot-occupied {
+  background: #d1d5db;
+}
+.dot-selected {
+  background: var(--indigo);
+}
 
 /* ===== PANEL CONFIRMARE ===== */
 .booking-confirm-panel {
   background: linear-gradient(135deg, var(--green-xlight), #f0fdf4);
-  border: 1.5px solid #86efac; border-radius: var(--radius-lg);
-  padding: 24px 28px; margin-top: 12px;
-  position: relative; overflow: hidden;
+  border: 1.5px solid #86efac;
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
 }
 
 .booking-confirm-panel::before {
-  content: '';
-  position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
   background: linear-gradient(to bottom, var(--green), var(--green-dark));
 }
 
 .booking-confirm-panel h3 {
-  font-size: 1rem; font-weight: 800; margin-bottom: 16px;
-  color: #065f46; display: flex; align-items: center; gap: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .booking-confirm-panel p {
-  font-size: 0.9rem; color: #374151; margin-bottom: 7px;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 7px;
 }
 
-.booking-confirm-panel p strong { color: var(--text); }
+.booking-confirm-panel p strong {
+  color: var(--text);
+}
 
-.confirm-price { font-weight: 800; font-size: 1.15rem; color: var(--green-dark); }
+.confirm-price {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--green-dark);
+}
 
 /* ===== POPUP SUCCES ===== */
-.success-popup { text-align: center; max-width: 440px; }
+.success-popup {
+  text-align: center;
+  max-width: 440px;
+}
 
 .success-popup-icon {
-  width: 80px; height: 80px;
+  width: 80px;
+  height: 80px;
   background: linear-gradient(135deg, var(--green), var(--green-dark));
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 2.2rem; color: var(--white); font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: var(--white);
+  font-weight: 700;
   margin: 0 auto 20px;
   box-shadow: 0 8px 32px var(--green-glow);
   animation: popIn 0.45s var(--ease-spring);
 }
 
 .success-popup-details {
-  background: var(--bg); border-radius: var(--radius-sm);
-  padding: 16px; margin: 16px 0;
-  text-align: left; border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 16px 0;
+  text-align: left;
+  border: 1px solid var(--border);
 }
 
 .popup-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 0; border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
   font-size: 0.86rem;
 }
 
-.popup-row:last-child { border-bottom: none; }
-.popup-row span   { color: var(--text-muted); }
-.popup-row strong { color: var(--text); font-weight: 700; }
+.popup-row:last-child {
+  border-bottom: none;
+}
+.popup-row span {
+  color: var(--text-muted);
+}
+.popup-row strong {
+  color: var(--text);
+  font-weight: 700;
+}
 
-.popup-price strong { color: var(--green-dark); font-size: 1.12rem; font-weight: 800; }
+.popup-price strong {
+  color: var(--green-dark);
+  font-size: 1.12rem;
+  font-weight: 800;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
-  .booking-section { padding: 22px 20px; }
-  .slots-grid { gap: 8px; }
-  .slot-btn { padding: 9px 14px; font-size: 0.82rem; min-width: 72px; }
-  .date-picker-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .booking-section {
+    padding: 22px 20px;
+  }
+  .slots-grid {
+    gap: 8px;
+  }
+  .slot-btn {
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    min-width: 72px;
+  }
+  .date-picker-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }

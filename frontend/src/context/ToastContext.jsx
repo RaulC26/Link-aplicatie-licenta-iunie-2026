@@ -1,65 +1,65 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback } from "react";
 
-const ToastContext = createContext(null)
+const ToastContext = createContext(null);
 
 export function useToast() {
-  return useContext(ToastContext)
+  return useContext(ToastContext);
 }
 
 export function ToastProvider({ children }) {
-  const [toasts, setToasts] = useState([])
+  const [toasts, setToasts] = useState([]);
 
-  const showToast = useCallback((message, type = 'success') => {
-    const id = Date.now() + Math.random()
-    setToasts(prev => [...prev, { id, message, type }])
-  }, [])
+  const showToast = useCallback((message, type = "success") => {
+    const id = Date.now() + Math.random();
+    setToasts((prev) => [...prev, { id, message, type }]);
+  }, []);
 
   const removeToast = useCallback((id) => {
-    setToasts(prev => prev.filter(t => t.id !== id))
-  }, [])
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
       {/* Container toasturi — în afara oricărui layout */}
       <div className="toast-container">
-        {toasts.map(t => (
+        {toasts.map((t) => (
           <ToastItem key={t.id} toast={t} onClose={() => removeToast(t.id)} />
         ))}
       </div>
     </ToastContext.Provider>
-  )
+  );
 }
 
 // Componenta individuală de toast — importată intern
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { CheckCircle2, XCircle, AlertTriangle, Info, X } from 'lucide-react'
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2, XCircle, AlertTriangle, Info, X } from "lucide-react";
 
 const ICONS = {
   success: <CheckCircle2 size={20} strokeWidth={2.5} />,
-  error:   <XCircle size={20} strokeWidth={2.5} />,
+  error: <XCircle size={20} strokeWidth={2.5} />,
   warning: <AlertTriangle size={20} strokeWidth={2.5} />,
-  info:    <Info size={20} strokeWidth={2.5} />,
-}
+  info: <Info size={20} strokeWidth={2.5} />,
+};
 
-const DURATION = 3800 // milisecunde
+const DURATION = 3800; // milisecunde
 
 function ToastItem({ toast, onClose }) {
   // Ref pentru progress bar — animăm width de la 100% la 0%
-  const progressRef = useRef(null)
+  const progressRef = useRef(null);
 
   useEffect(() => {
     // Dispare automat după DURATION ms
-    const timer = setTimeout(onClose, DURATION)
+    const timer = setTimeout(onClose, DURATION);
 
     // Animăm progress bar-ul via CSS custom property
     if (progressRef.current) {
-      progressRef.current.style.animationDuration = `${DURATION}ms`
+      progressRef.current.style.animationDuration = `${DURATION}ms`;
     }
 
-    return () => clearTimeout(timer)
-  }, [onClose])
+    return () => clearTimeout(timer);
+  }, [onClose]);
 
   return (
     <motion.div
@@ -84,7 +84,10 @@ function ToastItem({ toast, onClose }) {
       </button>
 
       {/* Progress bar care se golește în DURATION ms */}
-      <div ref={progressRef} className={`toast-v2-progress toast-v2-progress-${toast.type}`} />
+      <div
+        ref={progressRef}
+        className={`toast-v2-progress toast-v2-progress-${toast.type}`}
+      />
     </motion.div>
-  )
+  );
 }

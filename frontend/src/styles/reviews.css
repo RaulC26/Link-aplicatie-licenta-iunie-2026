@@ -117,8 +117,13 @@
   line-height: 0;
 }
 
-.star-btn:hover:not(.star-readonly) { transform: scale(1.2); }
-.star-btn.star-readonly { cursor: default; padding: 0; }
+.star-btn:hover:not(.star-readonly) {
+  transform: scale(1.2);
+}
+.star-btn.star-readonly {
+  cursor: default;
+  padding: 0;
+}
 
 /* Eticheta textuală a ratingului */
 .rating-label {
@@ -173,7 +178,9 @@
   resize: vertical;
   min-height: 80px;
   box-sizing: border-box;
-  transition: border-color 0.18s, box-shadow 0.18s;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
 }
 
 .review-textarea:focus {
@@ -218,7 +225,9 @@
   text-decoration: none;
 }
 
-.review-login-prompt a:hover { text-decoration: underline; }
+.review-login-prompt a:hover {
+  text-decoration: underline;
+}
 
 /* ── Lista de recenzii ── */
 .reviews-list {
@@ -242,7 +251,9 @@
   transition: box-shadow 0.18s;
 }
 
-.review-card:hover { box-shadow: var(--shadow-xs); }
+.review-card:hover {
+  box-shadow: var(--shadow-xs);
+}
 
 .review-card-header {
   display: flex;
@@ -333,8 +344,19 @@
 
 /* Responsive */
 @media (max-width: 640px) {
-  .reviews-section { padding: 22px 18px; }
-  .reviews-summary { flex-direction: column; gap: 16px; }
-  .reviews-score-box { flex-direction: row; align-items: center; gap: 12px; }
-  .reviews-big-score { font-size: 2.2rem; }
+  .reviews-section {
+    padding: 22px 18px;
+  }
+  .reviews-summary {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .reviews-score-box {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .reviews-big-score {
+    font-size: 2.2rem;
+  }
 }

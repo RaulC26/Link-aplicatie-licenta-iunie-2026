@@ -1,73 +1,88 @@
-import { useState, useEffect } from 'react'
-import { Pencil, Trash2 } from 'lucide-react'
-import { API_URL } from '../../utils/api'
-import { getToken } from '../../utils/auth'
-import ErrorMessage from '../ErrorMessage'
-import { SkeletonAdminTable } from '../Skeleton'
-import AdminFieldForm from './AdminFieldForm'
+import { useState, useEffect } from "react";
+import { Pencil, Trash2 } from "lucide-react";
+import { API_URL } from "../../utils/api";
+import { getToken } from "../../utils/auth";
+import ErrorMessage from "../ErrorMessage";
+import { SkeletonAdminTable } from "../Skeleton";
+import AdminFieldForm from "./AdminFieldForm";
 
 function AdminFieldsManager() {
-  const [fields, setFields] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-  const [editingField, setEditingField] = useState(null)   
-  const [showAddForm, setShowAddForm] = useState(false)
+  const [fields, setFields] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [editingField, setEditingField] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
-    loadFields()
-  }, [])
+    loadFields();
+  }, []);
 
   async function loadFields() {
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
     try {
-      const response = await fetch(API_URL + '/admin/fields', {
-        headers: { 'Authorization': 'Bearer ' + getToken() }
-      })
-      const data = await response.json()
-      if (!response.ok) { setError(data.mesaj || 'Eroare.'); return }
-      setFields(data)
+      const response = await fetch(API_URL + "/admin/fields", {
+        headers: { Authorization: "Bearer " + getToken() },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.mesaj || "Eroare.");
+        return;
+      }
+      setFields(data);
     } catch {
-      setError('Eroare conexiune.')
+      setError("Eroare conexiune.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   async function handleDelete(field) {
-    if (!window.confirm(`Ștergi terenul "${field.name}"? Acțiunea e ireversibilă.`)) return
+    if (
+      !window.confirm(
+        `Ștergi terenul "${field.name}"? Acțiunea e ireversibilă.`,
+      )
+    )
+      return;
 
     try {
-      const response = await fetch(API_URL + '/admin/fields/' + field.id, {
-        method: 'DELETE',
-        headers: { 'Authorization': 'Bearer ' + getToken() }
-      })
-      const data = await response.json()
+      const response = await fetch(API_URL + "/admin/fields/" + field.id, {
+        method: "DELETE",
+        headers: { Authorization: "Bearer " + getToken() },
+      });
+      const data = await response.json();
 
       if (!response.ok) {
-        alert(data.mesaj || 'Eroare la ștergere.')
-        return
+        alert(data.mesaj || "Eroare la ștergere.");
+        return;
       }
 
-      alert('Teren șters cu succes!')
-      loadFields()
+      alert("Teren șters cu succes!");
+      loadFields();
     } catch {
-      alert('Eroare conexiune.')
+      alert("Eroare conexiune.");
     }
   }
 
   function handleFormSuccess() {
-    setEditingField(null)
-    setShowAddForm(false)
-    loadFields()
+    setEditingField(null);
+    setShowAddForm(false);
+    loadFields();
   }
 
-  if (loading) return <SkeletonAdminTable rows={4} cols={5} />
-  if (error) return <ErrorMessage message={error} />
+  if (loading) return <SkeletonAdminTable rows={4} cols={5} />;
+  if (error) return <ErrorMessage message={error} />;
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "20px",
+        }}
+      >
         <h2>Gestionare Terenuri ({fields.length})</h2>
         {!showAddForm && !editingField && (
           <button className="btn-primary" onClick={() => setShowAddForm(true)}>
@@ -105,17 +120,23 @@ function AdminFieldsManager() {
               </tr>
             </thead>
             <tbody>
-              {fields.map(field => (
+              {fields.map((field) => (
                 <tr key={field.id}>
                   <td>{field.id}</td>
                   <td>{field.name}</td>
                   <td>{field.location}</td>
                   <td>{field.price_per_hour} lei</td>
                   <td>
-                    <button className="btn-edit" onClick={() => setEditingField(field)}>
+                    <button
+                      className="btn-edit"
+                      onClick={() => setEditingField(field)}
+                    >
                       <Pencil size={13} strokeWidth={2.5} /> Editează
                     </button>
-                    <button className="btn-delete" onClick={() => handleDelete(field)}>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(field)}
+                    >
                       <Trash2 size={13} strokeWidth={2.5} /> Șterge
                     </button>
                   </td>
@@ -126,7 +147,7 @@ function AdminFieldsManager() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default AdminFieldsManager
+export default AdminFieldsManager;

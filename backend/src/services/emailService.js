@@ -1,29 +1,28 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
- host: 'smtp.gmail.com',
- port: 587,
- secure: false,
- auth: {
- user: (process.env.EMAIL_USER || '').trim(),
- pass: (process.env.EMAIL_PASSWORD || '').trim()
- }
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: (process.env.EMAIL_USER || "").trim(),
+    pass: (process.env.EMAIL_PASSWORD || "").trim(),
+  },
 });
 
 async function sendEmail(to, subject, html) {
- try {
- const info = await transporter.sendMail({
- from: `"fotrez" <${(process.env.EMAIL_USER || '').trim()}>`,
- to: to,
- subject: subject,
- html: html
- });
- } catch (error) {
- }
+  try {
+    const info = await transporter.sendMail({
+      from: `"fotrez" <${(process.env.EMAIL_USER || "").trim()}>`,
+      to: to,
+      subject: subject,
+      html: html,
+    });
+  } catch (error) {}
 }
 
 function wrapHtml(content) {
- return `
+  return `
  <!DOCTYPE html>
  <html lang="ro">
  <head>
@@ -68,7 +67,7 @@ function wrapHtml(content) {
 }
 
 async function sendWelcomeEmail(user) {
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 16px;color:#111827;font-size:22px;">
  Bine ai venit, ${user.name}!
  </h2>
@@ -86,11 +85,11 @@ async function sendWelcomeEmail(user) {
  </a>
  `);
 
- await sendEmail(user.email, 'Bine ai venit la fotrez!', html);
+  await sendEmail(user.email, "Bine ai venit la fotrez!", html);
 }
 
 async function sendBookingCreatedEmail(user, booking, field) {
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 8px;color:#111827;font-size:22px;">
  Rezervare creată
  </h2>
@@ -122,8 +121,11 @@ async function sendBookingCreatedEmail(user, booking, field) {
  Data
  </td>
  <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">
- ${new Date(booking.booking_date).toLocaleDateString('ro-RO', {
- weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+ ${new Date(booking.booking_date).toLocaleDateString("ro-RO", {
+   weekday: "long",
+   year: "numeric",
+   month: "long",
+   day: "numeric",
  })}
  </td>
  </tr>
@@ -160,11 +162,11 @@ async function sendBookingCreatedEmail(user, booking, field) {
  </a>
  `);
 
- await sendEmail(user.email, `Rezervare creată - ${field.name}`, html);
+  await sendEmail(user.email, `Rezervare creată - ${field.name}`, html);
 }
 
 async function sendPaymentConfirmedEmail(user, booking, field, amount) {
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 8px;color:#111827;font-size:22px;">
  Plată confirmată!
  </h2>
@@ -187,8 +189,11 @@ async function sendPaymentConfirmedEmail(user, booking, field, amount) {
  Data
  </td>
  <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">
- ${new Date(booking.booking_date).toLocaleDateString('ro-RO', {
- weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+ ${new Date(booking.booking_date).toLocaleDateString("ro-RO", {
+   weekday: "long",
+   year: "numeric",
+   month: "long",
+   day: "numeric",
  })}
  </td>
  </tr>
@@ -227,11 +232,11 @@ async function sendPaymentConfirmedEmail(user, booking, field, amount) {
  </a>
  `);
 
- await sendEmail(user.email, `Plată confirmată - ${field.name}`, html);
+  await sendEmail(user.email, `Plată confirmată - ${field.name}`, html);
 }
 
 async function sendBookingCancelledEmail(user, booking, field) {
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 8px;color:#111827;font-size:22px;">
  Rezervare anulată
  </h2>
@@ -254,8 +259,11 @@ async function sendBookingCancelledEmail(user, booking, field) {
  Data rezervată
  </td>
  <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">
- ${new Date(booking.booking_date).toLocaleDateString('ro-RO', {
- weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+ ${new Date(booking.booking_date).toLocaleDateString("ro-RO", {
+   weekday: "long",
+   year: "numeric",
+   month: "long",
+   day: "numeric",
  })}
  </td>
  </tr>
@@ -282,17 +290,25 @@ async function sendBookingCancelledEmail(user, booking, field) {
  </a>
  `);
 
- await sendEmail(user.email, `Rezervare anulată - ${field.name}`, html);
+  await sendEmail(user.email, `Rezervare anulată - ${field.name}`, html);
 }
 
-async function sendTournamentRegistrationEmail(user, tournament, registration, players) {
- const playersHtml = players.map((p, i) =>
- `<tr ${i % 2 === 0 ? 'style="background:#f9fafb;"' : ''}>
+async function sendTournamentRegistrationEmail(
+  user,
+  tournament,
+  registration,
+  players,
+) {
+  const playersHtml = players
+    .map(
+      (p, i) =>
+        `<tr ${i % 2 === 0 ? 'style="background:#f9fafb;"' : ""}>
  <td style="padding:8px 16px;font-size:14px;color:#374151;">${i + 1}. ${p.player_name}</td>
- </tr>`
- ).join('')
+ </tr>`,
+    )
+    .join("");
 
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 8px;color:#111827;font-size:22px;">
  Echipa ta a fost înscrisă!
  </h2>
@@ -313,12 +329,12 @@ async function sendTournamentRegistrationEmail(user, tournament, registration, p
  <tr style="background:#f9fafb;">
  <td style="padding:12px 16px;font-size:13px;color:#6b7280;font-weight:600;text-transform:uppercase;border-top:1px solid #e5e7eb;">Data turneului</td>
  <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">
- ${new Date(tournament.start_date).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })}
+ ${new Date(tournament.start_date).toLocaleDateString("ro-RO", { year: "numeric", month: "long", day: "numeric" })}
  </td>
  </tr>
  <tr>
  <td style="padding:12px 16px;font-size:13px;color:#6b7280;font-weight:600;text-transform:uppercase;border-top:1px solid #e5e7eb;">Locație</td>
- <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">${tournament.location || '—'}</td>
+ <td style="padding:12px 16px;font-size:15px;color:#374151;border-top:1px solid #e5e7eb;">${tournament.location || "—"}</td>
  </tr>
  </table>
 
@@ -341,11 +357,11 @@ async function sendTournamentRegistrationEmail(user, tournament, registration, p
  </a>
  `);
 
- await sendEmail(user.email, `Înscriere turneu - ${tournament.name}`, html);
+  await sendEmail(user.email, `Înscriere turneu - ${tournament.name}`, html);
 }
 
 async function sendPasswordResetEmail(user, resetUrl) {
- const html = wrapHtml(`
+  const html = wrapHtml(`
  <h2 style="margin:0 0 8px;color:#111827;font-size:22px;">Resetare parolă</h2>
  <p style="color:#374151;font-size:15px;line-height:1.6;margin:0 0 20px;">
  Salut ${user.name},
@@ -371,14 +387,14 @@ async function sendPasswordResetEmail(user, resetUrl) {
  <span style="word-break:break-all;color:#16a34a;">${resetUrl}</span>
  </p>
  `);
- await sendEmail(user.email, 'Resetare parolă - fotrez', html);
+  await sendEmail(user.email, "Resetare parolă - fotrez", html);
 }
 
 module.exports = {
- sendWelcomeEmail,
- sendBookingCreatedEmail,
- sendPaymentConfirmedEmail,
- sendBookingCancelledEmail,
- sendTournamentRegistrationEmail,
- sendPasswordResetEmail
+  sendWelcomeEmail,
+  sendBookingCreatedEmail,
+  sendPaymentConfirmedEmail,
+  sendBookingCancelledEmail,
+  sendTournamentRegistrationEmail,
+  sendPasswordResetEmail,
 };

@@ -1,10 +1,10 @@
-const cron = require('node-cron');
-const db = require('../database');
+const cron = require("node-cron");
+const db = require("../database");
 
 const BOOKING_EXPIRATION_MINUTES = 10;
 
 async function updateTournamentStatuses() {
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = new Date().toISOString().split("T")[0];
 
   try {
     const [startResult] = await db.query(
@@ -12,7 +12,7 @@ async function updateTournamentStatuses() {
        SET status = 'active'
        WHERE status = 'upcoming'
          AND start_date <= ?`,
-      [todayStr]
+      [todayStr],
     );
 
     const [endResult] = await db.query(
@@ -20,11 +20,9 @@ async function updateTournamentStatuses() {
        SET status = 'completed'
        WHERE status = 'active'
          AND end_date < ?`,
-      [todayStr]
+      [todayStr],
     );
-
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 async function expirePendingBookings() {
@@ -34,11 +32,9 @@ async function expirePendingBookings() {
        SET status = 'cancelled'
        WHERE status = 'pending'
          AND created_at < (NOW() - INTERVAL ? MINUTE)`,
-      [BOOKING_EXPIRATION_MINUTES]
+      [BOOKING_EXPIRATION_MINUTES],
     );
-
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 async function completePastBookings() {
@@ -47,11 +43,9 @@ async function completePastBookings() {
       `UPDATE bookings
        SET status = 'completed'
        WHERE status = 'confirmed'
-         AND CONCAT(booking_date, ' ', end_time) <= NOW()`
+         AND CONCAT(booking_date, ' ', end_time) <= NOW()`,
     );
-
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 function startTournamentScheduler() {
@@ -59,15 +53,15 @@ function startTournamentScheduler() {
   expirePendingBookings();
   completePastBookings();
 
-  cron.schedule('1 0 * * *', () => {
+  cron.schedule("1 0 * * *", () => {
     updateTournamentStatuses();
   });
 
-  cron.schedule('* * * * *', () => {
+  cron.schedule("* * * * *", () => {
     expirePendingBookings();
   });
 
-  cron.schedule('*/5 * * * *', () => {
+  cron.schedule("*/5 * * * *", () => {
     completePastBookings();
   });
 }

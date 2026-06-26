@@ -2,15 +2,15 @@
    App.css — Importă toate fișierele CSS separate
    =================================================== */
 
-@import './styles/base.css';
-@import './styles/auth.css';
-@import './styles/navbar.css';
-@import './styles/buttons.css';
-@import './styles/forms.css';
-@import './styles/fields.css';
-@import './styles/slots.css';
-@import './styles/bookings.css';
-@import './styles/admin.css';
-@import './styles/tournaments.css';
-@import './styles/profile.css';
-@import './styles/pages.css';
+@import "./styles/base.css";
+@import "./styles/auth.css";
+@import "./styles/navbar.css";
+@import "./styles/buttons.css";
+@import "./styles/forms.css";
+@import "./styles/fields.css";
+@import "./styles/slots.css";
+@import "./styles/bookings.css";
+@import "./styles/admin.css";
+@import "./styles/tournaments.css";
+@import "./styles/profile.css";
+@import "./styles/pages.css";

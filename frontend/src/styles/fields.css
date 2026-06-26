@@ -4,79 +4,148 @@
 
 /* ── Bara de căutare și filtre ── */
 .fields-filter-bar {
-  display: flex; align-items: center; gap: 12px;
-  flex-wrap: wrap; margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 /* Search input cu icon */
 .fields-search-wrapper {
-  position: relative; flex: 1; min-width: 220px;
+  position: relative;
+  flex: 1;
+  min-width: 220px;
 }
 .fields-search-icon {
-  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-  color: var(--text-muted); pointer-events: none;
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
 }
 .fields-search-input {
-  width: 100%; padding: 10px 36px 10px 38px;
-  border: 1.5px solid var(--border); border-radius: var(--radius-pill);
-  font-size: 0.9rem; font-family: inherit; background: var(--white);
-  color: var(--text); transition: border-color 0.18s, box-shadow 0.18s;
+  width: 100%;
+  padding: 10px 36px 10px 38px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--text);
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
   box-sizing: border-box;
 }
 .fields-search-input:focus {
-  outline: none; border-color: var(--green);
+  outline: none;
+  border-color: var(--green);
   box-shadow: 0 0 0 3px var(--green-glow);
 }
-.fields-search-input::placeholder { color: var(--text-light); }
-.fields-search-clear {
-  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-  background: var(--bg); border: none; cursor: pointer;
-  color: var(--text-muted); border-radius: 50%;
-  width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s, color 0.15s;
+.fields-search-input::placeholder {
+  color: var(--text-light);
 }
-.fields-search-clear:hover { background: var(--border); color: var(--text); }
+.fields-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.fields-search-clear:hover {
+  background: var(--border);
+  color: var(--text);
+}
 
 /* Grup filtru (preț + sortare) */
 .fields-filter-group {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--white); border: 1.5px solid var(--border);
-  border-radius: var(--radius-pill); padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
   transition: border-color 0.18s;
 }
-.fields-filter-group:focus-within { border-color: var(--green); }
+.fields-filter-group:focus-within {
+  border-color: var(--green);
+}
 
 .fields-price-input {
-  border: none; outline: none; font-size: 0.88rem;
-  font-family: inherit; color: var(--text); background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text);
+  background: transparent;
   width: 130px;
 }
 .fields-sort-select {
-  border: none; outline: none; font-size: 0.88rem;
-  font-family: inherit; color: var(--text); background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text);
+  background: transparent;
   cursor: pointer;
 }
 
 /* Buton reset filtre */
 .fields-reset-btn {
-  display: flex; align-items: center; gap: 6px;
-  padding: 9px 16px; border-radius: var(--radius-pill);
-  border: 1.5px solid var(--red-light); background: var(--red-light);
-  color: var(--red-dark); font-size: 0.85rem; font-weight: 700;
-  cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--red-light);
+  background: var(--red-light);
+  color: var(--red-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
 }
-.fields-reset-btn:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+.fields-reset-btn:hover {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
 
 /* Număr rezultate */
 .fields-results-count {
-  font-size: 0.85rem; color: var(--text-muted); font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
   margin-bottom: 16px;
 }
 
 @media (max-width: 640px) {
-  .fields-filter-bar { flex-direction: column; align-items: stretch; }
-  .fields-search-wrapper { min-width: unset; }
-  .fields-price-input { width: 100%; }
+  .fields-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .fields-search-wrapper {
+    min-width: unset;
+  }
+  .fields-price-input {
+    width: 100%;
+  }
 }
 
 .fields-list {
@@ -115,30 +184,42 @@
 
 /* Wrapper imagine */
 .field-card-img-wrapper {
-  position: relative; height: 210px; overflow: hidden;
+  position: relative;
+  height: 210px;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--navy-3), var(--navy-4));
 }
 
 .field-card-img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s var(--ease);
 }
 
-.field-card:hover .field-card-img { transform: scale(1.07); }
+.field-card:hover .field-card-img {
+  transform: scale(1.07);
+}
 
 /* Overlay jos pe imagine */
 .field-card-img-wrapper::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 55%; pointer-events: none;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
 }
 
 /* Placeholder */
 .field-card-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 4.5rem;
   background: linear-gradient(135deg, #1a2540, #0d1424);
 }
@@ -152,159 +233,270 @@
 }
 
 .field-card-header-row {
-  display: flex; justify-content: space-between;
-  align-items: flex-start; gap: 10px; margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
 .field-card-header-row h2 {
-  font-size: 1.08rem; font-weight: 800;
-  color: var(--text); margin: 0; line-height: 1.3;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
   letter-spacing: -0.2px;
 }
 
 .field-card-price {
-  font-size: 0.92rem; font-weight: 800;
-  color: var(--green-dark); white-space: nowrap; flex-shrink: 0;
-  background: var(--green-light); padding: 4px 12px;
-  border-radius: var(--radius-pill); border: 1px solid #86efac;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: var(--green-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #86efac;
 }
 
-.field-card-price small { font-size: 0.68rem; font-weight: 500; opacity: 0.75; }
+.field-card-price small {
+  font-size: 0.68rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
 
 .field-card-location {
-  font-size: 0.81rem; color: var(--text-muted);
-  margin-bottom: 8px; display: flex; align-items: center; gap: 4px;
+  font-size: 0.81rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .field-card-desc {
-  font-size: 0.8rem; color: var(--text-light); line-height: 1.5;
-  display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .field-card-footer-row {
-  margin-top: auto; padding-top: 13px;
+  margin-top: auto;
+  padding-top: 13px;
   border-top: 1px solid var(--bg);
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .field-card-cta {
-  font-size: 0.86rem; font-weight: 700; color: var(--green-dark);
-  display: flex; align-items: center; gap: 4px;
-  transition: gap var(--t), color var(--t);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    gap var(--t),
+    color var(--t);
 }
 
-.field-card-link:hover .field-card-cta { color: var(--green); gap: 8px; }
+.field-card-link:hover .field-card-cta {
+  color: var(--green);
+  gap: 8px;
+}
 
 /* Locație tag (disponibil GPS) */
 .field-card-map-tag {
-  font-size: 0.72rem; color: var(--indigo);
-  background: var(--indigo-light); border: 1px solid #c7d2fe;
-  padding: 2px 8px; border-radius: var(--radius-pill); font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--indigo);
+  background: var(--indigo-light);
+  border: 1px solid #c7d2fe;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
 }
 
 /* ===== HERO PAGINA DETALII TEREN ===== */
 .field-hero {
-  position: relative; border-radius: var(--radius-2xl);
-  overflow: hidden; height: 380px; margin-bottom: 28px;
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  height: 380px;
+  margin-bottom: 28px;
   background: var(--navy-3);
 }
 
 .field-hero-img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .field-hero-overlay {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.93) 0%,
-    rgba(0,0,0,0.6) 40%,
-    rgba(0,0,0,0.2) 75%,
+    rgba(0, 0, 0, 0.93) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.2) 75%,
     transparent 100%
   );
-  display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px 44px;
 }
 
 .field-hero-breadcrumb {
-  font-size: 0.78rem; color: rgba(255,255,255,0.5);
-  margin-bottom: 14px; display: flex; align-items: center; gap: 7px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
-.field-hero-breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; font-weight: 500; transition: color var(--t); }
-.field-hero-breadcrumb a:hover { color: var(--white); }
+.field-hero-breadcrumb a {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--t);
+}
+.field-hero-breadcrumb a:hover {
+  color: var(--white);
+}
 
 .field-hero-title {
-  font-size: 2.5rem; font-weight: 900;
-  color: var(--white); margin-bottom: 8px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
-  line-height: 1.12; letter-spacing: -0.7px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  line-height: 1.12;
+  letter-spacing: -0.7px;
 }
 
 .field-hero-location {
-  font-size: 0.95rem; color: rgba(255,255,255,0.72);
-  margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .field-hero-desc {
-  font-size: 0.88rem; color: rgba(255,255,255,0.55);
-  margin-bottom: 16px; max-width: 580px; line-height: 1.6;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+  max-width: 580px;
+  line-height: 1.6;
 }
 
 .field-price-pill {
   display: inline-block;
   background: linear-gradient(135deg, var(--green), var(--green-dark));
-  color: var(--white); font-size: 1rem; font-weight: 800;
-  padding: 8px 24px; border-radius: var(--radius-pill);
-  box-shadow: 0 4px 20px var(--green-glow); letter-spacing: 0.1px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 20px var(--green-glow);
+  letter-spacing: 0.1px;
 }
 
 /* ===== HARTĂ ===== */
 .map-section {
-  margin-top: 28px; padding: 30px 36px;
-  background: var(--white); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  margin-top: 28px;
+  padding: 30px 36px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .map-address-hint {
-  font-size: 0.86rem; color: var(--text-muted);
-  margin-top: 14px; font-weight: 500;
-  display: flex; align-items: center; gap: 6px;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .map-section .leaflet-container {
-  border: none !important; outline: none !important;
-  font-family: inherit; border-radius: 14px;
+  border: none !important;
+  outline: none !important;
+  font-family: inherit;
+  border-radius: 14px;
 }
 
 .map-error-box {
-  width: 100%; height: 200px;
-  background: var(--red-light); border: 1px solid #fecaca;
-  border-radius: var(--radius); display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 10px; color: var(--red-dark); font-size: 0.9rem;
+  width: 100%;
+  height: 200px;
+  background: var(--red-light);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--red-dark);
+  font-size: 0.9rem;
 }
 
 .map-loading-box {
-  width: 100%; height: 200px; background: var(--bg);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 12px; color: var(--text-muted);
+  width: 100%;
+  height: 200px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
 }
 
 .map-loading-spinner {
-  width: 32px; height: 32px;
-  border: 3px solid var(--border); border-top-color: var(--green);
-  border-radius: 50%; animation: spin 0.75s linear infinite;
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .fields-list { grid-template-columns: 1fr; }
-  .field-hero  { height: 270px; border-radius: var(--radius-xl); }
-  .field-hero-overlay { padding: 24px 26px; }
-  .field-hero-title { font-size: 1.8rem; }
-  .map-section { padding: 22px 20px; }
+  .fields-list {
+    grid-template-columns: 1fr;
+  }
+  .field-hero {
+    height: 270px;
+    border-radius: var(--radius-xl);
+  }
+  .field-hero-overlay {
+    padding: 24px 26px;
+  }
+  .field-hero-title {
+    font-size: 1.8rem;
+  }
+  .map-section {
+    padding: 22px 20px;
+  }
 }
