@@ -177,3 +177,6 @@ function BookingCard({ booking, onCancel }) {
 
 export default BookingCard
 
+
+
+
