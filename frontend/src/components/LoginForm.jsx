@@ -1,6 +1,5 @@
 ﻿import { useState } from 'react'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
-// Icoane Lucide pentru câmpurile de input — mai curate decât emoji
 import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { API_URL } from '../utils/api'
 import { saveToken } from '../utils/auth'
@@ -15,7 +14,6 @@ function LoginForm() {
  const navigate = useNavigate()
  const [searchParams] = useSearchParams()
 
- // Edge case: sesiunea a expirat → mesaj specific diferit de eroarea de login
  const isExpired = searchParams.get('expired') === 'true'
 
  async function handleSubmit(e) {
@@ -36,7 +34,6 @@ function LoginForm() {
  })
  const data = await response.json()
 
- // Edge case: 401 separat pentru mesaj mai clar de credențiale greșite
  if (response.status === 401) { setError('Email sau parolă incorectă.'); return }
  if (!response.ok) { setError(data.mesaj || 'Eroare la autentificare.'); return }
 
@@ -53,20 +50,17 @@ function LoginForm() {
  return (
  <form onSubmit={handleSubmit}>
 
- {/* Mesaj sesiune expirată — apare când user vine de pe o rută protejată */}
  {isExpired && (
  <div className="auth-expired-msg">Sesiunea ta a expirat. Te rugăm să te autentifici din nou.
  </div>
  )}
 
- {/* Mesaj eroare login */}
  {error && (
  <div className="error" style={{ marginBottom: '20px' }}>
  {error}
  </div>
  )}
 
- {/* Câmp email cu iconița Mail din Lucide */}
  <div className="auth-input-group">
  <label>Adresă email</label>
  <div className="auth-input-wrapper">
@@ -82,7 +76,6 @@ function LoginForm() {
  </div>
  </div>
 
- {/* Câmp parolă cu iconița Lock din Lucide + toggle ochi */}
  <div className="auth-input-group">
  <label>Parolă</label>
  <div className="auth-input-wrapper">
@@ -107,7 +100,6 @@ function LoginForm() {
  </div>
  </div>
 
- {/* Link resetare parola */}
  <div style={{ textAlign: 'right', marginTop: '-8px', marginBottom: '16px' }}>
  <Link to="/forgot-password" style={{ fontSize: '0.82rem', color: 'var(--green-dark)', fontWeight: 600 }}>
  Ai uitat parola?
@@ -117,7 +109,6 @@ function LoginForm() {
  <button type="submit" className="auth-submit" disabled={loading}>
  {loading ? (
  <>
- {/* Spinner CSS animat în timp ce se verifică credențialele */}
  <span style={{
  width: 16, height: 16,
  border: '2px solid rgba(255,255,255,0.4)',

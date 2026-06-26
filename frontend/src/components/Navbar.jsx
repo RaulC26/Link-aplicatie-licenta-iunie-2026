@@ -6,14 +6,12 @@ import { Home, Trophy, Settings, User, CalendarDays, LogOut } from 'lucide-react
 function Navbar() {
   const navigate = useNavigate()
   const logged = isLoggedIn()
-  // Prenumele in state — se reactualizeaza la event 'user-updated' (la editare profil)
   const [firstName, setFirstName] = useState(logged ? getFirstName() : '')
 
   useEffect(() => {
     function refreshFirstName() {
       setFirstName(isLoggedIn() ? getFirstName() : '')
     }
-    // Edge case: ascultam atat eventul custom (acelasi tab) cat si 'storage' (alt tab)
     window.addEventListener('user-updated', refreshFirstName)
     window.addEventListener('storage', refreshFirstName)
     return () => {
@@ -22,7 +20,6 @@ function Navbar() {
     }
   }, [])
 
-  // Ștergem tokenul și reîncărcăm pagina pentru a reseta starea
   function handleLogout() {
     removeToken()
     navigate('/')
@@ -31,7 +28,6 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Logo fotrez - background image cu zoom in ca sa eliminam padding-ul transparent */}
       <Link to="/" className="navbar-logo">
         <div
           className="navbar-logo-img"
@@ -69,7 +65,6 @@ function Navbar() {
               <CalendarDays size={15} strokeWidth={2.5} />
               Rezervările mele
             </Link>
-            {/* Salut, prenume! — pozitionat in dreapta, langa Logout */}
             {firstName && (
               <span className="navbar-greeting">Salut, {firstName}!</span>
             )}

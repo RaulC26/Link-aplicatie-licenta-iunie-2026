@@ -7,7 +7,6 @@ import BookingCard from './BookingCard'
 import ErrorMessage from './ErrorMessage'
 import { SkeletonBookingCard } from './Skeleton'
 
-// Tab-urile disponibile - fiecare are propria culoare (clasa) si iconita
 const TABS = [
  { key: 'upcoming', label: 'Viitoare', icon: CalendarDays, color: 'tab-upcoming' },
  { key: 'past', label: 'Trecute', icon: CheckCircle2, color: 'tab-past' },
@@ -47,13 +46,8 @@ function BookingsList() {
  )
  if (error) return <ErrorMessage message={error} />
 
- // Momentul curent pentru comparații cu data + ora rezervării
  const now = new Date()
 
- // Helper: combină booking_date + end_time într-un obiect Date
- // Edge case: booking_date vine ca ISO UTC ("2026-05-31T21:00:00.000Z") din MariaDB
- // din cauza fusului orar EEST (+3). Folosim getFullYear/Month/Date ca să luăm
- // data LOCALĂ corectă, nu substring care ar da ziua precedentă.
  function getEndDateTime(b) {
  const d = new Date(b.booking_date)
  const yyyy = d.getFullYear()
@@ -62,19 +56,14 @@ function BookingsList() {
  return new Date(`${yyyy}-${mm}-${dd}T${b.end_time}`)
  }
 
- // Filtrăm rezervările în funcție de tab-ul activ
- // Edge case: o rezervare anulată din trecut NU trebuie să apară și la "Trecute"
- // ca să nu fie numărată dublu (1 + 10 + 2 trebuie să fie egal cu Toate)
  function filterBookings(tab) {
  switch (tab) {
  case 'upcoming':
- // Viitoare = încă nu s-a încheiat (end_time > acum) ȘI status activ
  return bookings.filter(b =>
  (b.status === 'pending' || b.status === 'confirmed') &&
  getEndDateTime(b) > now
  )
  case 'past':
- // Trecute = end_time <= acum SAU status completed; exclus cancelled
  return bookings.filter(b => b.status !== 'cancelled' &&
  (getEndDateTime(b) <= now || b.status === 'completed')
  )
@@ -87,7 +76,6 @@ function BookingsList() {
 
  const filtered = filterBookings(activeTab)
 
- // Numărăm rezervările per tab pentru badge-uri
  const counts = {
  upcoming: filterBookings('upcoming').length,
  past: filterBookings('past').length,
@@ -95,7 +83,6 @@ function BookingsList() {
  all: bookings.length,
  }
 
- // Mesaj gol diferit per tab
  const emptyMessages = {
  upcoming: { icon: '', title: 'Nicio rezervare viitoare', sub: 'Rezervă un teren pentru a juca!' },
  past: { icon: '🕐', title: 'Nicio rezervare trecută', sub: 'Istoricul tău va apărea aici.' },
@@ -105,7 +92,6 @@ function BookingsList() {
 
  return (
  <div>
- {/* Tab-uri cu badge-uri count + culori distincte per categorie */}
  <div className="bookings-tabs">
  {TABS.map(tab => {
  const Icon = tab.icon
@@ -127,7 +113,6 @@ function BookingsList() {
  })}
  </div>
 
- {/* Lista rezervări sau mesaj gol */}
  {filtered.length === 0 ? (
  <div className="empty-state">
  <p style={{ fontSize: '2.5rem', marginBottom: 8 }}>{emptyMessages[activeTab].icon}</p>

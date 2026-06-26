@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { User, Mail, Lock, Phone, ArrowRight, Eye, EyeOff, Check, X as XIcon } from 'lucide-react'
 import { API_URL } from '../utils/api'
 
-// Helper: validez parola complexa
-// Cerinte: minim 8 caractere, 1 litera mare, 1 cifra, 1 caracter special
 function validatePassword(pw) {
  return {
  length: pw.length >= 8,
@@ -28,7 +26,6 @@ function RegisterForm() {
  const pwRules = validatePassword(password)
  const allRulesValid = Object.values(pwRules).every(Boolean)
 
- // Helper pentru formatarea telefonului in timp real (doar cifre + max 10)
  function handlePhoneChange(e) {
  const digitsOnly = e.target.value.replace(/[^0-9]/g, '')
  if (digitsOnly.length <= 10) setPhone(digitsOnly)
@@ -40,7 +37,7 @@ function RegisterForm() {
 
  if (loading) return
 
- // Validari client-side
+
  if (!name || !email || !password) { setError('Numele, emailul și parola sunt obligatorii.'); return }
 
  const numeRegex = /^[a-zA-ZăâîșțĂÂÎȘȚ\s]+$/
@@ -55,8 +52,6 @@ function RegisterForm() {
  return
  }
 
- // Edge case: telefon optional dar validat strict daca e completat
- // Format romanesc: exact 10 cifre, incepand cu 07
  if (phone.trim() !== '') {
  if (!/^07[0-9]{8}$/.test(phone)) {
  setError('Numărul de telefon trebuie să aibă 10 cifre și să înceapă cu 07 (ex: 0712345678).')
@@ -90,7 +85,6 @@ function RegisterForm() {
  {error && <div className="error" style={{ marginBottom: '16px' }}> {error}</div>}
  {success && <div className="success" style={{ marginBottom: '16px' }}> {success}</div>}
 
- {/* Nume */}
  <div className="auth-input-group">
  <label>Nume complet</label>
  <div className="auth-input-wrapper">
@@ -105,7 +99,6 @@ function RegisterForm() {
  </div>
  </div>
 
- {/* Email */}
  <div className="auth-input-group">
  <label>Adresă email</label>
  <div className="auth-input-wrapper">
@@ -120,7 +113,6 @@ function RegisterForm() {
  </div>
  </div>
 
- {/* Parola cu toggle ochi */}
  <div className="auth-input-group">
  <label>Parolă</label>
  <div className="auth-input-wrapper">
@@ -143,7 +135,6 @@ function RegisterForm() {
  </button>
  </div>
 
- {/* Lista cu cerintele de parola - feedback vizual in timp real */}
  {password && (
  <ul className="password-rules">
  <li className={pwRules.length ? 'rule-ok' : 'rule-bad'}>
@@ -162,7 +153,6 @@ function RegisterForm() {
  )}
  </div>
 
- {/* Telefon optional - format romanesc */}
  <div className="auth-input-group">
  <label>Telefon <span className="auth-optional">(opțional)</span></label>
  <div className="auth-input-wrapper">

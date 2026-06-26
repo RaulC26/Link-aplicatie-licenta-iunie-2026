@@ -6,7 +6,6 @@ import FieldCard from './FieldCard'
 import ErrorMessage from './ErrorMessage'
 import { SkeletonFieldCard } from './Skeleton'
 
-// Variante stagger — cardurile apar succesiv cu efect spring
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } }
@@ -21,9 +20,8 @@ function FieldsList() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // Stare pentru search și filtre
   const [search, setSearch] = useState('')
-  const [sortBy, setSortBy] = useState('default') // 'default' | 'price_asc' | 'price_desc'
+  const [sortBy, setSortBy] = useState('default') 
   const [maxPrice, setMaxPrice] = useState('')
 
   useEffect(() => {
@@ -49,10 +47,8 @@ function FieldsList() {
 
   if (error) return <ErrorMessage message={error} />
 
-  // Aplicăm filtrele client-side — lista e mică, nu e nevoie de request suplimentar
   let filtered = [...fields]
 
-  // Filtru search — caută în nume și locație (case-insensitive)
   if (search.trim()) {
     const q = search.trim().toLowerCase()
     filtered = filtered.filter(f =>
@@ -61,19 +57,16 @@ function FieldsList() {
     )
   }
 
-  // Filtru preț maxim
   if (maxPrice !== '') {
     filtered = filtered.filter(f => parseFloat(f.price_per_hour) <= parseFloat(maxPrice))
   }
 
-  // Sortare după preț
   if (sortBy === 'price_asc') {
     filtered.sort((a, b) => parseFloat(a.price_per_hour) - parseFloat(b.price_per_hour))
   } else if (sortBy === 'price_desc') {
     filtered.sort((a, b) => parseFloat(b.price_per_hour) - parseFloat(a.price_per_hour))
   }
 
-  // Verificăm dacă sunt filtre active — pentru butonul de reset
   const hasFilters = search.trim() || maxPrice !== '' || sortBy !== 'default'
 
   function resetFilters() {
@@ -82,15 +75,12 @@ function FieldsList() {
     setSortBy('default')
   }
 
-  // Prețul maxim din toate terenurile — pentru placeholder-ul slider-ului
   const maxFieldPrice = Math.max(...fields.map(f => parseFloat(f.price_per_hour)), 0)
 
   return (
     <div>
-      {/* ── Bara de căutare și filtre ── */}
       <div className="fields-filter-bar">
 
-        {/* Search input */}
         <div className="fields-search-wrapper">
           <Search size={16} strokeWidth={2.5} className="fields-search-icon" />
           <input
@@ -100,7 +90,7 @@ function FieldsList() {
             onChange={e => setSearch(e.target.value)}
             placeholder="Caută după nume sau locație..."
           />
-          {/* X de ștergere search */}
+
           {search && (
             <button className="fields-search-clear" onClick={() => setSearch('')}>
               <X size={14} strokeWidth={2.5} />
@@ -108,7 +98,6 @@ function FieldsList() {
           )}
         </div>
 
-        {/* Preț maxim */}
         <div className="fields-filter-group">
           <SlidersHorizontal size={15} strokeWidth={2.5} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
           <input
@@ -121,7 +110,6 @@ function FieldsList() {
           />
         </div>
 
-        {/* Sortare */}
         <div className="fields-filter-group">
           <ArrowUpDown size={15} strokeWidth={2.5} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
           <select
@@ -135,7 +123,6 @@ function FieldsList() {
           </select>
         </div>
 
-        {/* Buton reset — apare doar când există filtre active */}
         {hasFilters && (
           <button className="fields-reset-btn" onClick={resetFilters}>
             <X size={14} strokeWidth={2.5} /> Resetează
@@ -143,7 +130,6 @@ function FieldsList() {
         )}
       </div>
 
-      {/* Rezultate count */}
       {hasFilters && (
         <p className="fields-results-count">
           {filtered.length === 0
@@ -152,7 +138,6 @@ function FieldsList() {
         </p>
       )}
 
-      {/* ── Grid terenuri ── */}
       {filtered.length === 0 ? (
         <div className="empty-state">
           <p style={{ fontSize: '2.5rem' }}>🔍</p>
@@ -163,7 +148,7 @@ function FieldsList() {
       ) : (
         <motion.div
           className="fields-list"
-          key={sortBy + search + maxPrice} // re-animăm când se schimbă filtrele
+          key={sortBy + search + maxPrice} 
           variants={containerVariants}
           initial="hidden"
           animate="visible"

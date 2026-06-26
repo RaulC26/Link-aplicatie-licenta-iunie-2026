@@ -13,18 +13,15 @@ function AdminTournamentsManager() {
  const [showAdd, setShowAdd] = useState(false)
  const [editingTournament, setEditingTournament] = useState(null)
 
- // Vizualizare inscrieri
  const [viewRegistrations, setViewRegistrations] = useState(null)
  const [registrations, setRegistrations] = useState([])
  const [regLoading, setRegLoading] = useState(false)
 
- // Editare inline echipa
  const [editingRegId, setEditingRegId] = useState(null)
  const [editForm, setEditForm] = useState(null)
  const [saveLoading, setSaveLoading] = useState(false)
  const [saveError, setSaveError] = useState('')
 
- // Vizualizare/editare castigatori (locuri 1/2/3)
  const [viewWinners, setViewWinners] = useState(null)
  const [winnersForm, setWinnersForm] = useState({ winner_first: '', winner_second: '', winner_third: '' })
  const [winnersSaving, setWinnersSaving] = useState(false)
@@ -60,7 +57,6 @@ function AdminTournamentsManager() {
  finally { setRegLoading(false) }
  }
 
- // Deschide vizualizarea de castigatori (locuri 1/2/3)
  function openWinners(tournament) {
  setViewWinners(tournament)
  setWinnersForm({
@@ -182,11 +178,7 @@ function AdminTournamentsManager() {
  )
  if (error) return <ErrorMessage message={error} />
 
- // ================================================================
- // VIZUALIZARE CASTIGATORI — formular locuri 1/2/3
- // ================================================================
  if (viewWinners) {
- // Listă echipe aprobate pentru sugestii rapide la auto-complete
  const approvedTeams = (viewWinners.approved_team_names || []).filter(Boolean)
 
  return (
@@ -241,7 +233,6 @@ function AdminTournamentsManager() {
  maxLength={100}
  />
 
- {/* Datalist pentru sugestii rapide din echipele inscrise */}
  <datalist id="approvedTeamsList">
  {approvedTeams.map(name => <option key={name} value={name} />)}
  </datalist>
@@ -260,9 +251,6 @@ function AdminTournamentsManager() {
  )
  }
 
- // ================================================================
- // VIZUALIZARE INSCRIERI — carduri per echipa
- // ================================================================
  if (viewRegistrations) {
  const approved = registrations.filter(r => r.status === 'approved').length
  const pending = registrations.filter(r => r.status === 'pending').length
@@ -482,9 +470,6 @@ function AdminTournamentsManager() {
  )
  }
 
- // ================================================================
- // LISTA DE TURNEE
- // ================================================================
  return (
  <div>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
@@ -525,7 +510,6 @@ function AdminTournamentsManager() {
  <tr key={t.id}>
  <td>
  <strong>{t.name}</strong>
- {/* Indicator vizual daca turneul are castigatori setati */}
  {t.winner_first && (
  <div style={{ fontSize: '0.72rem', color: '#16a34a', marginTop: 2 }}>
  {t.winner_first}

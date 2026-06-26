@@ -9,7 +9,6 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
 
-        {/* Coloana branding */}
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
             <div
@@ -25,7 +24,6 @@ function Footer() {
           </p>
         </div>
 
-        {/* Coloana navigare */}
         <div className="footer-col">
           <h4>Navigare</h4>
           <ul>
@@ -36,7 +34,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Coloana funcționalități */}
         <div className="footer-col">
           <h4>Funcționalități</h4>
           <ul>
@@ -47,7 +44,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Coloana cont */}
         <div className="footer-col">
           <h4>Cont</h4>
           <ul>
@@ -59,7 +55,6 @@ function Footer() {
         </div>
       </div>
 
-      {/* Bara de jos */}
       <div className="footer-bottom">
         <span>© {currentYear} fotrez. Toate drepturile rezervate.</span>
       </div>

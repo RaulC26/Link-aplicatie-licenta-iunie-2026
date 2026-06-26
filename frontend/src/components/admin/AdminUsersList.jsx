@@ -10,16 +10,13 @@ function AdminUsersList() {
  const [loading, setLoading] = useState(true)
  const [error, setError] = useState('')
 
- // Filtru de căutare după nume sau email
  const [search, setSearch] = useState('')
 
- // Userul aflat în modul editare — null când nu edităm pe nimeni
  const [editingUser, setEditingUser] = useState(null)
  const [editForm, setEditForm] = useState({ name: '', phone: '', role: '' })
  const [editError, setEditError] = useState('')
  const [savingEdit, setSavingEdit] = useState(false)
 
- // ID-ul adminului logat — folosit ca să nu îl lași să se șteargă/modifice pe sine
  const currentAdmin = getUserFromToken()
  const currentAdminId = currentAdmin ? currentAdmin.userId : null
 
@@ -44,7 +41,6 @@ function AdminUsersList() {
  }
  }
 
- // Intră în modul editare pentru un user — preumplem formularul
  function startEdit(user) {
  setEditingUser(user)
  setEditError('')
@@ -61,7 +57,6 @@ function AdminUsersList() {
  setEditError('')
  }
 
- // Salvează modificările
  async function handleSaveEdit() {
  if (!editForm.name.trim() || editForm.name.trim().length < 2) {
  setEditError('Numele trebuie să aibă minim 2 caractere.')
@@ -89,7 +84,6 @@ function AdminUsersList() {
  }
  }
 
- // Ștergere user — cu confirmare clară
  async function handleDelete(user) {
  if (!window.confirm(`Sigur ștergi utilizatorul "${user.name}" (${user.email})?\n\nAceastă acțiune nu poate fi anulată.`)) return
  try {
@@ -106,7 +100,6 @@ function AdminUsersList() {
  }
  }
 
- // Filtrăm userii după search (nume sau email)
  const filteredUsers = users.filter(u => {
  if (!search.trim()) return true
  const q = search.trim().toLowerCase()
@@ -125,7 +118,6 @@ function AdminUsersList() {
  </button>
  </div>
 
- {/* Bara de căutare */}
  <div style={{ marginBottom: '16px' }}>
  <input
  type="text"
@@ -161,7 +153,6 @@ function AdminUsersList() {
  const isEditing = editingUser && editingUser.id === user.id
 
  if (isEditing) {
- // === MOD EDITARE — un singur user în formular inline ===
  return (
  <tr key={user.id} style={{ background: '#fef9c3' }}>
  <td>{user.id}</td>
@@ -173,7 +164,6 @@ function AdminUsersList() {
  onChange={e => setEditForm({ ...editForm, name: e.target.value })}
  />
  </td>
- {/* Email-ul nu se poate modifica — e cheia unică de identificare */}
  <td><small>{user.email}</small></td>
  <td>
  <input
@@ -215,7 +205,6 @@ function AdminUsersList() {
  )
  }
 
- // === MOD VIZUALIZARE ===
  return (
  <tr key={user.id}>
  <td>{user.id}</td>
@@ -224,14 +213,12 @@ function AdminUsersList() {
  {isSelf && <span style={{ marginLeft: 6, fontSize: '0.7rem', fontWeight: 700, color: 'var(--green-dark)' }}>(Tu)</span>}
  </td>
  <td>{user.email}</td>
- {/* Edge case: telefonul poate fi null dacă nu a fost completat */}
  <td>{user.phone || '—'}</td>
  <td>
  <span className={user.role === 'admin' ? 'role-badge-admin' : 'role-badge-user'}>
  {user.role}
  </span>
  </td>
- {/* Formatăm data în format românesc */}
  <td>{new Date(user.created_at).toLocaleDateString('ro-RO')}</td>
  <td>
  <div style={{ display: 'flex', gap: '4px' }}>
@@ -243,7 +230,6 @@ function AdminUsersList() {
  <Pencil size={13} strokeWidth={2.5} />
  Editează
  </button>
- {/* Edge case: butonul de ștergere este blocat pe propriul cont */}
  <button
  className="btn-delete"
  onClick={() => handleDelete(user)}

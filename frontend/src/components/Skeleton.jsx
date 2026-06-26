@@ -1,7 +1,3 @@
-// Componente skeleton pentru loading state — înlocuiesc spinner-ul
-// Fiecare funcție returnează un placeholder animat care imită structura cardului real
-
-// ── CARD TEREN ─────────────────────────────────────────────────
 export function SkeletonFieldCard() {
   return (
     <div className="skeleton-field-card">
@@ -16,7 +12,6 @@ export function SkeletonFieldCard() {
   )
 }
 
-// ── CARD REZERVARE ──────────────────────────────────────────────
 export function SkeletonBookingCard() {
   return (
     <div className="skeleton-booking-card">
@@ -36,7 +31,7 @@ export function SkeletonBookingCard() {
   )
 }
 
-// ── CARD TURNEU ─────────────────────────────────────────────────
+
 export function SkeletonTournamentCard() {
   return (
     <div className="skeleton-tournament-card">
@@ -55,7 +50,7 @@ export function SkeletonTournamentCard() {
   )
 }
 
-// ── CARD ÎNSCRIERE TURNEU (MyTournamentsList) ───────────────────
+
 export function SkeletonTournamentReg() {
   return (
     <div className="skeleton-booking-card" style={{ borderLeft: '4px solid var(--border)' }}>
@@ -70,8 +65,6 @@ export function SkeletonTournamentReg() {
   )
 }
 
-// ── TABEL ADMIN (rânduri placeholder) ──────────────────────────
-// cols = numărul de coloane, rows = numărul de rânduri simulate
 export function SkeletonAdminTable({ rows = 5, cols = 5 }) {
   return (
     <div className="admin-table-wrapper">
@@ -95,11 +88,9 @@ export function SkeletonAdminTable({ rows = 5, cols = 5 }) {
   )
 }
 
-// ── PAGINA PROFIL ───────────────────────────────────────────────
 export function SkeletonProfile() {
   return (
     <div className="page-container">
-      {/* Banner placeholder */}
       <div style={{ position: 'relative', marginBottom: '16px' }}>
         <div className="skeleton" style={{ height: 140, borderRadius: 'var(--radius-2xl)' }} />
         <div className="skeleton" style={{
@@ -107,15 +98,12 @@ export function SkeletonProfile() {
           width: 100, height: 100, borderRadius: 'var(--radius-lg)'
         }} />
       </div>
-      {/* Info sub banner */}
       <div style={{ padding: '0 36px 26px', display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
         <div className="skeleton skeleton-line" style={{ width: 200, height: 22 }} />
         <div className="skeleton skeleton-line" style={{ width: 160, height: 14 }} />
         <div className="skeleton skeleton-line" style={{ width: 120, height: 12 }} />
       </div>
-      {/* Tab-uri placeholder */}
       <div className="skeleton" style={{ width: 280, height: 46, borderRadius: 'var(--radius-pill)', marginBottom: 22 }} />
-      {/* Card placeholder */}
       <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-lg)', padding: '30px 36px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 18 }}>
         {[80, 60, 40, 70, 50].map((w, i) => (
           <div key={i} className="skeleton skeleton-line" style={{ width: `${w}%`, height: 16 }} />
@@ -125,18 +113,13 @@ export function SkeletonProfile() {
   )
 }
 
-// ── PAGINA DETALII TEREN ────────────────────────────────────────
 export function SkeletonFieldDetail() {
   return (
     <div className="page-container">
-      {/* Hero placeholder */}
       <div className="skeleton" style={{ height: 340, borderRadius: 'var(--radius-2xl)', marginBottom: 28 }} />
-      {/* Booking section */}
       <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 28, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div className="skeleton skeleton-line" style={{ width: '40%', height: 24 }} />
-        {/* DatePickerBar placeholder */}
         <div className="skeleton" style={{ height: 72, borderRadius: 'var(--radius-xl)' }} />
-        {/* Sloturi placeholder */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {Array.from({ length: 14 }).map((_, i) => (
             <div key={i} className="skeleton" style={{ width: 72, height: 52, borderRadius: 'var(--radius-lg)' }} />
@@ -147,27 +130,21 @@ export function SkeletonFieldDetail() {
   )
 }
 
-// ── PAGINA DETALII TURNEU ───────────────────────────────────────
 export function SkeletonTournamentDetail() {
   return (
     <div className="page-container">
-      {/* Breadcrumb */}
       <div className="skeleton skeleton-line" style={{ width: 220, height: 14, marginBottom: 20 }} />
-      {/* Header */}
       <div style={{ marginBottom: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div className="skeleton skeleton-line" style={{ width: '50%', height: 32 }} />
         <div className="skeleton skeleton-line" style={{ width: '70%', height: 16 }} />
       </div>
-      {/* Body 2 coloane */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        {/* Stânga */}
         <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 24, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div className="skeleton skeleton-line" style={{ width: '40%', height: 18 }} />
           {[65, 80, 55, 70, 60, 45].map((w, i) => (
             <div key={i} className="skeleton skeleton-line" style={{ width: `${w}%`, height: 14 }} />
           ))}
         </div>
-        {/* Dreapta */}
         <div style={{ background: 'var(--white)', borderRadius: 'var(--radius-xl)', padding: 24, border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div className="skeleton skeleton-line" style={{ width: '50%', height: 18 }} />
           {[70, 55, 80, 60, 65].map((w, i) => (

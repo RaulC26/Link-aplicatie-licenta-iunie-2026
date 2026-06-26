@@ -1,28 +1,23 @@
 ﻿import { Link } from 'react-router-dom'
-// Icoane Lucide pentru locație și CTA
 import { MapPin, ArrowRight } from 'lucide-react'
 
 function FieldCard({ field }) {
  return (
- // Link ca element de bază pentru accesibilitate și SEO
  <Link to={'/field/' + field.id} className="field-card-link">
  <div className="field-card">
 
- {/* Imaginea terenului sau placeholder dacă nu există */}
  <div className="field-card-img-wrapper">
  {field.image_url ? (
  <img
  src={field.image_url}
  alt={field.name}
  className="field-card-img"
- // Edge case: dacă imaginea nu se încarcă, afișăm placeholder-ul
  onError={e => {
  e.target.style.display = 'none'
  e.target.nextSibling.style.display = 'flex'
  }}
  />
  ) : null}
- {/* Placeholder vizibil când nu există imagine sau imaginea a dat eroare */}
  <div className="field-card-placeholder" style={{ display: field.image_url ? 'none' : 'flex' }}>
  
  </div>
@@ -34,7 +29,6 @@ function FieldCard({ field }) {
  <span className="field-card-price">{field.price_per_hour} lei<small>/oră</small></span>
  </div>
 
- {/* Locație cu iconiță MapPin din Lucide — mai clară decât emoji */}
  <p className="field-card-location">
  <MapPin size={13} strokeWidth={2.5} />
  {field.location}
@@ -45,7 +39,6 @@ function FieldCard({ field }) {
  )}
 
  <div className="field-card-footer-row">
- {/* Rating mediu din recenzii — Edge case: terenuri fără recenzii afișează "Fără recenzii" */}
  {field.avg_rating ? (
  <span className="field-card-rating">
  ★ {field.avg_rating}
@@ -57,7 +50,6 @@ function FieldCard({ field }) {
  <span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>Fără recenzii</span>
  )}
 
- {/* CTA cu săgeată Lucide care se mișcă la hover (via CSS) */}
  <span className="field-card-cta">Rezervă acum
  <ArrowRight size={14} strokeWidth={2.5} />
  </span>

@@ -69,7 +69,6 @@ function MyTournamentsList() {
  {registrations.map(reg => (
  <div key={reg.id} className={`my-tournament-card my-tournament-${reg.status}`}>
 
- {/* Header: turneu + status */}
  <div className="my-tournament-header">
  <div>
  <h3 className="my-tournament-title"> {reg.tournament_name}</h3>
@@ -84,10 +83,8 @@ function MyTournamentsList() {
  </span>
  </div>
 
- {/* Corp: detalii echipă în 2 coloane */}
  <div className="my-tournament-body">
 
- {/* Coloana stângă: info echipă */}
  <div className="my-tournament-col">
  <p className="my-tournament-section-title">Echipa ta</p>
  <div className="my-tournament-info-grid">
@@ -120,7 +117,6 @@ function MyTournamentsList() {
  </div>
  </div>
 
- {/* Coloana dreaptă: jucători */}
  <div className="my-tournament-col">
  <p className="my-tournament-section-title">Jucătorii echipei ({(reg.players || []).length}/{reg.team_size})</p>
  {(reg.players || []).length > 0 ? (
@@ -138,11 +134,9 @@ function MyTournamentsList() {
  </div>
  </div>
 
- {/* Footer: acțiuni */}
  <div className="my-tournament-footer">
  <Link to={`/tournaments/${reg.tournament_id}`} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>Vezi turneul
  </Link>
- {/* Edge case: se poate anula înscrierea doar dacă e în așteptare */}
  {reg.status === 'pending' && (
  <button
  className="btn-danger"
