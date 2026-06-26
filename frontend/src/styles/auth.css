@@ -1,0 +1,328 @@
+/* ===================================================
+   AUTH — Login & Register cu layout split full-screen
+   =================================================== */
+
+/* Container full-screen split */
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ===== PANOUL STÂNGA — dark, branding ===== */
+.auth-left {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-3) 40%, #0a1a30 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 44px 52px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orb-uri decorative */
+.auth-left::before {
+  content: '';
+  position: absolute; top: -100px; right: -80px;
+  width: 450px; height: 450px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.auth-left::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -60px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Grilă punctată */
+.auth-left-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Logo în stânga sus */
+.auth-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; position: relative; z-index: 1;
+}
+
+.auth-logo-icon {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Imaginea logo-ului din interior - se intinde sa umple containerul */
+.auth-logo-icon > div {
+  width: 100% !important;
+  height: 100% !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  /* Filtrul drop-shadow ofera glow verde subtil in jurul logo-ului */
+  filter: drop-shadow(0 4px 12px rgba(34,197,94,0.4));
+}
+
+.auth-logo-text {
+  font-size: 1.05rem; font-weight: 800;
+  color: var(--white); letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.auth-logo-text span {
+  display: block; font-size: 0.7rem; font-weight: 500;
+  color: var(--navy-text); letter-spacing: 0;
+}
+
+/* Conținut central al panoului stânga */
+.auth-left-content {
+  position: relative; z-index: 1;
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 40px 0;
+}
+
+.auth-tagline {
+  font-size: 2.4rem; font-weight: 900;
+  color: var(--white); line-height: 1.15;
+  letter-spacing: -0.8px; margin-bottom: 16px;
+}
+
+.auth-tagline span {
+  background: linear-gradient(135deg, var(--green) 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-tagline-sub {
+  font-size: 0.95rem; color: var(--navy-text);
+  line-height: 1.7; max-width: 360px; margin-bottom: 36px;
+}
+
+/* Lista cu features */
+.auth-features { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+.auth-feature-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  transition: background var(--t), border-color var(--t);
+}
+
+.auth-feature-item:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.auth-feature-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+
+.auth-feature-icon-green  { background: rgba(34,197,94,0.15); }
+.auth-feature-icon-indigo { background: rgba(99,102,241,0.15); }
+.auth-feature-icon-amber  { background: rgba(245,158,11,0.15); }
+.auth-feature-icon-blue   { background: rgba(59,130,246,0.15); }
+
+.auth-feature-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+.auth-feature-text p      { font-size: 0.8rem; color: var(--navy-text); margin: 0; }
+
+/* Stats jos pe panoul stânga */
+.auth-stats {
+  display: flex; gap: 28px;
+  position: relative; z-index: 1;
+}
+
+.auth-stat strong {
+  display: block; font-size: 1.5rem; font-weight: 900;
+  color: var(--white); letter-spacing: -0.5px;
+}
+
+.auth-stat span { font-size: 0.78rem; color: var(--navy-text); font-weight: 500; }
+
+/* ===== PANOUL DREAPTA — form alb ===== */
+.auth-right {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  padding: 48px 60px;
+  position: relative;
+}
+
+/* Decorație subtilă */
+.auth-right::before {
+  content: '';
+  position: absolute; bottom: -60px; right: -60px;
+  width: 250px; height: 250px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.auth-form-box {
+  width: 100%; max-width: 400px;
+}
+
+.auth-form-title {
+  font-size: 1.75rem; font-weight: 900;
+  color: var(--text); margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.auth-form-sub {
+  font-size: 0.9rem; color: var(--text-muted);
+  margin-bottom: 32px; line-height: 1.5;
+}
+
+/* Input group modernizat */
+.auth-input-group { margin-bottom: 18px; }
+
+.auth-input-group label {
+  display: block; font-size: 0.8rem; font-weight: 700;
+  color: var(--text-2); margin-bottom: 7px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+
+.auth-input-wrapper { position: relative; }
+
+.auth-input-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 1rem; color: var(--text-light); pointer-events: none;
+}
+
+/* Buton toggle "ochi" pentru afisare/ascundere parola */
+.auth-input-toggle {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: transparent; border: none;
+  color: var(--text-light); cursor: pointer;
+  padding: 4px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: color var(--t), background var(--t);
+}
+.auth-input-toggle:hover { color: var(--text); background: var(--bg-2); }
+.auth-input-toggle:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Lista cu cerintele de parola - feedback vizual in timp real */
+.password-rules {
+  list-style: none; padding: 0; margin: 10px 0 0 0;
+  background: var(--bg-2); border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+.password-rules li {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; margin: 4px 0;
+  font-weight: 500;
+}
+.password-rules .rule-ok {
+  color: #16a34a;
+}
+.password-rules .rule-bad {
+  color: var(--text-muted);
+}
+.password-rules li svg {
+  flex-shrink: 0;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.94rem; font-family: inherit;
+  background: var(--bg); color: var(--text);
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: var(--green);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.1);
+}
+
+.auth-input::placeholder { color: var(--text-xlight); }
+
+/* Buton submit auth */
+.auth-submit {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: var(--white); font-size: 0.95rem; font-weight: 700;
+  border: none; border-radius: var(--radius-sm);
+  cursor: pointer; font-family: inherit;
+  transition: all var(--t) var(--ease);
+  box-shadow: 0 4px 16px var(--green-glow);
+  margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+.auth-submit:hover {
+  box-shadow: 0 6px 28px rgba(34,197,94,0.4);
+  transform: translateY(-1px);
+}
+
+.auth-submit:active { transform: translateY(0); }
+.auth-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+/* Link-ul de swap login ↔ register */
+.auth-swap {
+  text-align: center; margin-top: 24px;
+  font-size: 0.88rem; color: var(--text-muted);
+}
+
+.auth-swap a {
+  color: var(--green-dark); font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-swap a:hover { text-decoration: underline; }
+
+/* Divider "sau" */
+.auth-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 20px 0; color: var(--text-light);
+  font-size: 0.8rem; font-weight: 500;
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: ''; flex: 1;
+  height: 1px; background: var(--border);
+}
+
+/* Tag opțional */
+.auth-optional {
+  font-size: 0.75rem; color: var(--text-light);
+  font-weight: 400; margin-left: 4px;
+}
+
+/* Mesaj expirat sesiune */
+.auth-expired-msg {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--yellow-light); border: 1px solid #fde68a;
+  border-left: 3px solid var(--yellow);
+  color: #92400e; border-radius: var(--radius-sm);
+  padding: 12px 16px; margin-bottom: 20px;
+  font-size: 0.87rem; font-weight: 500;
+}
+
+/* Responsive auth */
+@media (max-width: 900px) {
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-left { display: none; }
+  .auth-right { min-height: 100vh; padding: 40px 28px; justify-content: flex-start; padding-top: 80px; }
+}
+
+@media (max-width: 480px) {
+  .auth-right { padding: 70px 20px 40px; }
+  .auth-form-box { max-width: 100%; }
+}

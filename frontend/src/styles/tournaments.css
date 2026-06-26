@@ -1,0 +1,342 @@
+/* ===================================================
+   TOURNAMENTS — Lista turnee, detalii, echipe
+   =================================================== */
+
+/* ===== HERO TURNEE ===== */
+.tournaments-hero {
+  background: linear-gradient(160deg, var(--navy) 0%, #0d1a38 45%, #061422 80%, var(--navy) 100%);
+  border-radius: var(--radius-2xl);
+  padding: 64px 56px; margin-bottom: 32px;
+  text-align: center; color: var(--white);
+  position: relative; overflow: hidden;
+}
+
+.tournaments-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 500px 300px at 70% 30%, rgba(34,197,94,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 350px 250px at 30% 70%, rgba(99,102,241,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.tournaments-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Emoji mare decorativ */
+.tournaments-hero-emoji {
+  font-size: 3.5rem; margin-bottom: 16px;
+  display: block; position: relative; z-index: 1;
+  filter: drop-shadow(0 4px 20px rgba(34,197,94,0.3));
+}
+
+.tournaments-hero h1 {
+  color: var(--white); font-size: 2.4rem;
+  margin-bottom: 12px; position: relative; z-index: 1;
+  font-weight: 900; letter-spacing: -0.6px;
+}
+
+.tournaments-hero p {
+  color: #8899b4; font-size: 1rem; margin: 0;
+  position: relative; z-index: 1;
+  max-width: 480px; margin: 0 auto; line-height: 1.65;
+}
+
+/* ===== FILTRE ===== */
+.tournaments-filter {
+  display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--white); border: 1.5px solid var(--border);
+  color: var(--text-muted); padding: 8px 20px;
+  border-radius: var(--radius-pill); cursor: pointer;
+  font-size: 0.84rem; font-weight: 600;
+  transition: all var(--t) var(--ease); font-family: inherit;
+}
+
+.filter-btn:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-xlight); }
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  border-color: transparent; color: var(--white);
+  box-shadow: 0 4px 14px var(--green-glow);
+}
+
+/* ===== GRID TURNEE ===== */
+.tournaments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+/* Card turneu */
+.tournament-card {
+  background: var(--white);
+  border-radius: var(--radius-lg); padding: 0;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transition: all var(--t-slow) var(--ease);
+  overflow: hidden; position: relative;
+}
+
+.tournament-card:hover {
+  /* transform gestionat de framer-motion în TournamentsPage (whileHover) */
+  box-shadow: var(--shadow-xl);
+}
+
+/* Header colorat al cardului (gradient pe status) */
+.tournament-card-header-band {
+  height: 6px; width: 100%;
+  background: linear-gradient(90deg, var(--green), var(--indigo));
+}
+
+.tournament-card-body { padding: 22px 22px 20px; flex: 1; display: flex; flex-direction: column; }
+
+/* Top: badge + deadline */
+.tournament-card-top {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 14px;
+}
+
+.tournament-deadline {
+  font-size: 0.73rem; color: var(--red); font-weight: 700;
+  background: var(--red-light); padding: 4px 10px;
+  border-radius: var(--radius-pill); border: 1px solid #fecaca;
+  display: flex; align-items: center; gap: 4px;
+}
+
+.tournament-name {
+  font-size: 1.22rem; font-weight: 800;
+  color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px;
+}
+
+.tournament-description {
+  font-size: 0.84rem; color: var(--text-muted); line-height: 1.6;
+  margin-bottom: 16px;
+  display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Grid meta cu 2 coloane */
+.tournament-meta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px 14px; margin-bottom: 20px; flex: 1;
+}
+
+.tournament-meta-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; color: var(--text-2);
+}
+
+.tournament-meta-item strong { font-weight: 700; }
+.tournament-meta-icon { font-size: 0.9rem; flex-shrink: 0; }
+
+/* Spots bar vizuală */
+.tournament-spots-bar {
+  margin-bottom: 18px;
+}
+
+.tournament-spots-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.78rem; color: var(--text-muted); font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.tournament-spots-track {
+  height: 5px; background: var(--bg);
+  border-radius: var(--radius-pill); overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.tournament-spots-fill {
+  height: 100%; border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--green), var(--indigo));
+  transition: width 0.6s var(--ease);
+}
+
+.tournament-card-footer { margin-top: auto; }
+.tournament-card-footer .btn-primary {
+  width: 100%; display: flex; justify-content: center; align-items: center;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== BADGE STATUS ===== */
+.tournament-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.3px; white-space: nowrap;
+}
+
+.tournament-status-upcoming  { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+.tournament-status-active    { background: var(--green-light); color: #166534; border: 1px solid #86efac; }
+.tournament-status-completed { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+.tournament-status-cancelled { background: var(--red-light); color: #991b1b; border: 1px solid #fecaca; }
+
+/* ===== PAGINA DETALII TURNEU ===== */
+.tournament-detail-header {
+  margin-bottom: 28px;
+}
+
+.tournament-detail-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px; align-items: start;
+}
+
+.tournament-info-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 26px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.tournament-info-card h3 {
+  font-size: 1rem; font-weight: 800; color: var(--text);
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 2px solid var(--bg);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.tournament-info-rows { display: flex; flex-direction: column; }
+
+.tournament-info-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid var(--bg); font-size: 0.86rem;
+}
+
+.tournament-info-row:last-child { border-bottom: none; }
+.tournament-info-row span   { color: var(--text-muted); font-weight: 500; }
+.tournament-info-row strong { color: var(--text); text-align: right; max-width: 55%; font-weight: 700; }
+
+.tournament-register-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 26px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border); position: sticky; top: 82px;
+}
+
+.tournament-register-card h3 {
+  font-size: 1rem; font-weight: 800; color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* ===== LISTA PUBLICĂ ECHIPE ===== */
+.enrolled-teams-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.enrolled-team-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: var(--bg);
+  border-radius: var(--radius-sm); border: 1px solid var(--border);
+  transition: all var(--t) var(--ease);
+}
+
+.enrolled-team-item:hover {
+  background: var(--green-light); border-color: #86efac;
+  transform: translateX(4px);
+}
+
+.enrolled-team-number {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--indigo-dark));
+  color: var(--white); display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 800; flex-shrink: 0;
+  box-shadow: 0 2px 8px var(--indigo-glow);
+}
+
+.enrolled-team-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tournament-detail-body { grid-template-columns: 1fr; }
+  .tournament-register-card { position: static; }
+  .tournaments-hero { padding: 40px 24px; border-radius: var(--radius-xl); }
+  .tournaments-hero h1 { font-size: 1.8rem; }
+  .tournaments-grid { grid-template-columns: 1fr; }
+  .tournament-meta { grid-template-columns: 1fr; }
+}
+
+/* ===================================================
+   PODIUM CASTIGATORI (locuri 1/2/3)
+   =================================================== */
+.winners-podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.winner-card {
+  flex: 1;
+  min-width: 140px;
+  max-width: 220px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  border: 2px solid var(--border);
+  transition: transform 0.2s ease;
+}
+
+.winner-card:hover { transform: translateY(-4px); }
+
+.winner-medal {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.winner-place {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.winner-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  word-break: break-word;
+}
+
+/* Locul 1 - cel mai mare si auriu */
+.winner-first {
+  padding: 28px 18px;
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+  transform: translateY(-12px);
+}
+.winner-first .winner-medal { font-size: 3rem; }
+.winner-first .winner-name { font-size: 1.15rem; color: #78350f; }
+.winner-first .winner-place { color: #92400e; }
+
+/* Locul 2 - argintiu */
+.winner-second {
+  background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-color: #9ca3af;
+}
+
+/* Locul 3 - bronz */
+.winner-third {
+  background: linear-gradient(180deg, #fed7aa 0%, #fdba74 100%);
+  border-color: #c2410c;
+}
+.winner-third .winner-name { color: #7c2d12; }
+
+@media (max-width: 640px) {
+  .winners-podium { flex-direction: column; align-items: stretch; }
+  .winner-card { max-width: 100%; transform: none !important; }
+}
