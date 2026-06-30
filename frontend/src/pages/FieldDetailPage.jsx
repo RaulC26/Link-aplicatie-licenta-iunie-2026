@@ -15,23 +15,20 @@ function FieldDetailPage() {
   const [field, setField] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  // Data selectată — implicit azi
-  // Edge case: folosim componentele LOCALE (getFullYear/Month/Date) ca sa nu cadem
-  // in trecut din cauza fusului EEST. La 1AM Romania, UTC e ziua precedenta.
   const todayLocal = new Date();
   const today = `${todayLocal.getFullYear()}-${String(todayLocal.getMonth() + 1).padStart(2, "0")}-${String(todayLocal.getDate()).padStart(2, "0")}`;
   const [selectedDate, setSelectedDate] = useState(today);
   const [slots, setSlots] = useState([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
 
-  // Array de sloturi selectate (multi-select consecutiv, max 4)
+  
   const [selectedSlots, setSelectedSlots] = useState([]);
 
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingError, setBookingError] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     loadField();
   }, [id]);
 
@@ -67,7 +64,7 @@ function FieldDetailPage() {
       const data = await res.json();
       if (res.ok) setSlots(data);
     } catch {
-      /* non-fatal */
+      
     } finally {
       setSlotsLoading(false);
     }
@@ -87,7 +84,7 @@ function FieldDetailPage() {
     );
 
     if (isSelected) {
-      // Click pe slot deja selectat → deselectăm tot
+      
       setSelectedSlots([]);
       return;
     }
@@ -97,7 +94,7 @@ function FieldDetailPage() {
       return;
     }
 
-    // Verificăm adiacența față de selecția curentă
+    
     const sorted = [...selectedSlots].sort((a, b) =>
       a.start_time.localeCompare(b.start_time),
     );
@@ -105,26 +102,26 @@ function FieldDetailPage() {
     const lastEnd = sorted[sorted.length - 1].end_time;
 
     if (slot.start_time === lastEnd) {
-      // Adăugăm DUPĂ
+      
       if (selectedSlots.length >= 4) {
         setBookingError("Poți selecta maxim 4 ore consecutive.");
         return;
       }
       setSelectedSlots([...sorted, slot]);
     } else if (slot.end_time === firstStart) {
-      // Adăugăm ÎNAINTE
+      
       if (selectedSlots.length >= 4) {
         setBookingError("Poți selecta maxim 4 ore consecutive.");
         return;
       }
       setSelectedSlots([slot, ...sorted]);
     } else {
-      // Edge case: slot ne-adiacent → resetăm selecția la noul slot
+      
       setSelectedSlots([slot]);
     }
   }
 
-  // Confirmă rezervarea și redirecționează direct la plată Stripe
+  
   async function confirmBooking() {
     if (selectedSlots.length === 0) return;
     setBookingLoading(true);
@@ -160,17 +157,17 @@ function FieldDetailPage() {
         return;
       }
 
-      // Obținem booking_id-ul pentru a iniția plata
-      // Edge case: single booking → data.bookingId, multi → data.bookingIds[0]
+      
+      
       const bookingId = isSingle ? data.bookingId : data.bookingIds[0];
 
       if (!bookingId) {
-        // Edge case: ID-ul lipsă din răspuns → redirectăm la rezervările mele
+        
         navigate("/my-bookings");
         return;
       }
 
-      // Creăm sesiunea de checkout Stripe și redirecționăm direct
+      
       setBookingError("");
       try {
         const payRes = await fetch(
@@ -187,14 +184,14 @@ function FieldDetailPage() {
         const payData = await payRes.json();
 
         if (payRes.ok && payData.url) {
-          // Redirecționăm direct la Stripe Checkout
+          
           window.location.href = payData.url;
         } else {
-          // Edge case: dacă plata eșuează, mergem la rezervările mele unde pot plăti manual
+          
           navigate("/my-bookings");
         }
       } catch {
-        // Edge case: rețea căzută după creare rezervare → oricum rezervarea e creată
+        
         navigate("/my-bookings");
       }
     } catch {
@@ -229,7 +226,7 @@ function FieldDetailPage() {
 
   return (
     <div className="page-container">
-      {/* === HERO: imagine cu overlay gradient === */}
+      
       <div className="field-hero">
         {field.image_url && (
           <img
@@ -242,7 +239,7 @@ function FieldDetailPage() {
           />
         )}
         <div className="field-hero-overlay">
-          {/* Breadcrumb pe fundalul întunecat */}
+          
           <div className="field-hero-breadcrumb">
             <Link to="/">Acasă</Link> › <Link to="/">Terenuri</Link> ›{" "}
             <span>{field.name}</span>
@@ -258,7 +255,7 @@ function FieldDetailPage() {
         </div>
       </div>
 
-      {/* === SECȚIUNEA DE REZERVARE === */}
+      
       <div className="booking-section">
         <div
           style={{
@@ -285,15 +282,15 @@ function FieldDetailPage() {
           </span>
         </div>
 
-        {/* Bara modernă de selectare dată (stil Booksport) — înlocuiește input type="date" */}
+        
         <DatePickerBar
           selectedDate={selectedDate}
           onChange={(date) => setSelectedDate(date)}
         />
 
-        {/* Grid sloturi — pill-uri interactive */}
+        
         {slotsLoading ? (
-          // Skeleton sloturi — 14 pill-uri placeholder cât se încarcă disponibilitatea
+          
           <div className="slots-grid">
             {Array.from({ length: 14 }).map((_, i) => (
               <div
@@ -334,7 +331,7 @@ function FieldDetailPage() {
           </div>
         )}
 
-        {/* Legendă */}
+        
         <div className="slots-legend">
           <span className="legend-item">
             <span className="legend-dot dot-free"></span>Disponibil
@@ -347,7 +344,7 @@ function FieldDetailPage() {
           </span>
         </div>
 
-        {/* Panel de confirmare — apare doar când ai sloturi selectate */}
+        
         {selectedSlots.length > 0 && (
           <div className="booking-confirm-panel">
             <h3>Confirmare rezervare</h3>
@@ -379,7 +376,7 @@ function FieldDetailPage() {
             {bookingError && <ErrorMessage message={bookingError} />}
 
             <div style={{ display: "flex", gap: "12px", marginTop: "16px" }}>
-              {/* Butonul confirmă duce direct la Stripe — nu mai e nevoie să mergi la "Rezervările mele" */}
+              
               <button
                 className="btn-primary"
                 onClick={confirmBooking}
@@ -405,8 +402,8 @@ function FieldDetailPage() {
         )}
       </div>
 
-      {/* === SECȚIUNEA HARTĂ (doar dacă terenul are coordonate) === */}
-      {/* Edge case: afișăm harta DOAR dacă terenul are coordonate salvate */}
+      
+      
       {field.latitude && field.longitude && (
         <div className="map-section">
           <h2 style={{ marginBottom: "16px" }}>Localizare pe hartă</h2>
@@ -419,7 +416,7 @@ function FieldDetailPage() {
         </div>
       )}
 
-      {/* === SECȚIUNEA RECENZII === */}
+      
       <ReviewsSection fieldId={id} />
     </div>
   );

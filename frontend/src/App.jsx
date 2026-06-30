@@ -27,10 +27,10 @@ function App() {
   return (
     <ToastProvider>
       <BrowserRouter>
-        {/* Navbar apare pe toate paginile */}
+        
         <Navbar />
 
-        {/* page-content limitează lățimea conținutului, lăsând navbar full-width */}
+        
         <div className="page-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -39,14 +39,14 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-            {/* Pagina detalii teren cu slot picker - accesibilă fără autentificare */}
+            
             <Route path="/field/:id" element={<FieldDetailPage />} />
 
-            {/* Paginile de turnee - accesibile fără autentificare */}
+            
             <Route path="/tournaments" element={<TournamentsPage />} />
             <Route path="/tournaments/:id" element={<TournamentDetailPage />} />
 
-            {/* Rute protejate - verifică token-ul */}
+            
             <Route
               path="/profile"
               element={
@@ -64,15 +64,14 @@ function App() {
               }
             />
 
-            {/* Edge case: paginile de plată NU sunt protejate
-              Stripe redirectează la ele - userul poate nu mai e "logat" după redirect */}
+            
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route
               path="/payment-cancelled"
               element={<PaymentCancelledPage />}
             />
 
-            {/* Edge case: ruta admin e protejată dublu — token valid + rol admin */}
+            
             <Route
               path="/admin"
               element={
@@ -84,7 +83,7 @@ function App() {
           </Routes>
         </div>
 
-        {/* Footer pe toate paginile */}
+        
         <Footer />
       </BrowserRouter>
     </ToastProvider>

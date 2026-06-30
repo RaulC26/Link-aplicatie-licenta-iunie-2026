@@ -1,8 +1,6 @@
-/* ===================================================
-   PROFILE - Pagina profil utilizator (redesenata)
-   =================================================== */
 
-/* Wrapper pentru input parola cu buton toggle ochi inauntru */
+
+
 .pw-input-wrapper {
   position: relative;
   margin-bottom: 16px;
@@ -33,7 +31,7 @@
   background: var(--bg-2);
 }
 
-/* ===== HERO: avatar + info pe acelasi rand, gradient verde modern ===== */
+
 .profile-hero {
   position: relative;
   border-radius: var(--radius-2xl);
@@ -44,7 +42,7 @@
   box-shadow: 0 12px 40px rgba(6, 78, 59, 0.25);
 }
 
-/* Pattern decorativ in fundal */
+
 .profile-hero-bg {
   position: absolute;
   inset: 0;
@@ -75,7 +73,7 @@
   flex-wrap: wrap;
 }
 
-/* Avatar mare cu glow */
+
 .profile-hero-avatar {
   width: 96px;
   height: 96px;
@@ -93,7 +91,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Bloc info (nume, email, telefon) */
+
 .profile-hero-info {
   flex: 1;
   min-width: 220px;
@@ -135,7 +133,7 @@
   font-weight: 500;
 }
 
-/* Badge admin in coltul drept */
+
 .profile-hero-badge {
   background: rgba(251, 191, 36, 0.95);
   color: #78350f;
@@ -149,7 +147,7 @@
   align-self: flex-start;
 }
 
-/* ===== TAB-URI ===== */
+
 .profile-tabs {
   display: flex;
   gap: 4px;
@@ -191,7 +189,7 @@
   font-weight: 700;
 }
 
-/* Tab special pentru zona periculoasa */
+
 .profile-tab-danger {
   color: #dc2626;
 }
@@ -205,7 +203,7 @@
   color: white;
 }
 
-/* ===== CARD CONTINUT ===== */
+
 .profile-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -215,7 +213,7 @@
   animation: fadeIn 0.3s var(--ease);
 }
 
-/* Card cu accent rosu pentru zona periculoasa */
+
 .profile-card-danger {
   border: 2px solid rgba(220, 38, 38, 0.3);
   background: linear-gradient(
@@ -241,7 +239,7 @@
   margin: 0;
 }
 
-/* Grid info */
+
 .profile-info-grid {
   display: flex;
   flex-direction: column;
@@ -274,7 +272,7 @@
   font-weight: 600;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .profile-hero {
     padding: 24px 22px;

@@ -1,8 +1,6 @@
-/* ===================================================
-   TOURNAMENTS — Lista turnee, detalii, echipe
-   =================================================== */
 
-/* ===== HERO TURNEE ===== */
+
+
 .tournaments-hero {
   background: linear-gradient(
     160deg,
@@ -50,7 +48,7 @@
   pointer-events: none;
 }
 
-/* Emoji mare decorativ */
+
 .tournaments-hero-emoji {
   font-size: 3.5rem;
   margin-bottom: 16px;
@@ -81,7 +79,7 @@
   line-height: 1.65;
 }
 
-/* ===== FILTRE ===== */
+
 .tournaments-filter {
   display: flex;
   gap: 8px;
@@ -115,14 +113,14 @@
   box-shadow: 0 4px 14px var(--green-glow);
 }
 
-/* ===== GRID TURNEE ===== */
+
 .tournaments-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 24px;
 }
 
-/* Card turneu */
+
 .tournament-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -137,11 +135,11 @@
 }
 
 .tournament-card:hover {
-  /* transform gestionat de framer-motion în TournamentsPage (whileHover) */
+  
   box-shadow: var(--shadow-xl);
 }
 
-/* Header colorat al cardului (gradient pe status) */
+
 .tournament-card-header-band {
   height: 6px;
   width: 100%;
@@ -155,7 +153,7 @@
   flex-direction: column;
 }
 
-/* Top: badge + deadline */
+
 .tournament-card-top {
   display: flex;
   justify-content: space-between;
@@ -196,7 +194,7 @@
   overflow: hidden;
 }
 
-/* Grid meta cu 2 coloane */
+
 .tournament-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -221,7 +219,7 @@
   flex-shrink: 0;
 }
 
-/* Spots bar vizuală */
+
 .tournament-spots-bar {
   margin-bottom: 18px;
 }
@@ -261,7 +259,7 @@
   border-radius: var(--radius-sm);
 }
 
-/* ===== BADGE STATUS ===== */
+
 .tournament-status {
   display: inline-flex;
   align-items: center;
@@ -295,7 +293,7 @@
   border: 1px solid #fecaca;
 }
 
-/* ===== PAGINA DETALII TURNEU ===== */
+
 .tournament-detail-header {
   margin-bottom: 28px;
 }
@@ -372,7 +370,7 @@
   margin-bottom: 6px;
 }
 
-/* ===== LISTA PUBLICĂ ECHIPE ===== */
+
 .enrolled-teams-list {
   list-style: none;
   padding: 0;
@@ -420,7 +418,7 @@
   color: var(--text);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .tournament-detail-body {
     grid-template-columns: 1fr;
@@ -443,9 +441,7 @@
   }
 }
 
-/* ===================================================
-   PODIUM CASTIGATORI (locuri 1/2/3)
-   =================================================== */
+
 .winners-podium {
   display: flex;
   align-items: flex-end;
@@ -493,7 +489,7 @@
   word-break: break-word;
 }
 
-/* Locul 1 - cel mai mare si auriu */
+
 .winner-first {
   padding: 28px 18px;
   background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
@@ -512,13 +508,13 @@
   color: #92400e;
 }
 
-/* Locul 2 - argintiu */
+
 .winner-second {
   background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
   border-color: #9ca3af;
 }
 
-/* Locul 3 - bronz */
+
 .winner-third {
   background: linear-gradient(180deg, #fed7aa 0%, #fdba74 100%);
   border-color: #c2410c;

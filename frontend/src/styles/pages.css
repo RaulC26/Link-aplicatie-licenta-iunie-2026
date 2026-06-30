@@ -1,8 +1,6 @@
-/* ===================================================
-   PAGES — Homepage hero, secțiuni speciale
-   =================================================== */
 
-/* ===== HOMEPAGE HERO ===== */
+
+
 .hero-section {
   background: linear-gradient(
     160deg,
@@ -23,7 +21,7 @@
   justify-content: space-between;
 }
 
-/* Mesh gradient animat în fundal */
+
 .hero-section::before {
   content: "";
   position: absolute;
@@ -47,7 +45,7 @@
   pointer-events: none;
 }
 
-/* Grilă de puncte */
+
 .hero-section::after {
   content: "";
   position: absolute;
@@ -67,7 +65,7 @@
   margin-bottom: 50px;
 }
 
-/* Badge "live" */
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -151,7 +149,7 @@
   box-shadow: none;
 }
 
-/* Statistici rapide */
+
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -174,7 +172,7 @@
 }
 
 .hero-stat:hover {
-  /* transform gestionat de framer-motion în HomePage (whileHover) */
+  
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.14);
 }
@@ -203,7 +201,7 @@
   line-height: 1.4;
 }
 
-/* ===== FEATURES STRIP sub hero ===== */
+
 .features-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -225,7 +223,7 @@
 }
 
 .feature-box:hover {
-  /* transform gestionat de framer-motion în HomePage (whileHover) */
+  
   box-shadow: var(--shadow-md);
   border-color: var(--border-2);
 }
@@ -264,7 +262,7 @@
   line-height: 1.5;
 }
 
-/* ===== HEADER SECȚIUNE ===== */
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -292,7 +290,7 @@
   font-weight: 500;
 }
 
-/* ===== PAGINA CONTUL MEU — header vizual ===== */
+
 .my-account-header {
   background: linear-gradient(135deg, var(--navy-2) 0%, #0d1a30 100%);
   border-radius: var(--radius-xl);
@@ -352,7 +350,7 @@
   margin: 0;
 }
 
-/* Responsive pages */
+
 @media (max-width: 1000px) {
   .hero-section {
     padding: 60px 40px 48px;

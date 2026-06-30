@@ -5,11 +5,11 @@ import { Gift, MapPin, Trophy, Mail } from "lucide-react";
 function RegisterPage() {
   return (
     <div className="auth-page">
-      {/* ===== PANOUL STÂNGA — branding ===== */}
+      
       <div className="auth-left">
         <div className="auth-left-grid" />
 
-        {/* Logo */}
+        
         <Link to="/" className="auth-logo">
           <div className="auth-logo-icon">
             <div
@@ -29,7 +29,7 @@ function RegisterPage() {
           </div>
         </Link>
 
-        {/* Conținut central */}
+        
         <div className="auth-left-content">
           <p className="auth-tagline">
             Alătură-te
@@ -84,7 +84,7 @@ function RegisterPage() {
         </div>
       </div>
 
-      {/* ===== PANOUL DREAPTA — formular ===== */}
+      
       <div className="auth-right">
         <div className="auth-form-box">
           <h2 className="auth-form-title">Creează cont gratuit</h2>

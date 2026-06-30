@@ -1,8 +1,6 @@
-/* ===================================================
-   FORMS — Formulare admin, profil (nu auth — aia e în auth.css)
-   =================================================== */
 
-/* === FORMULAR CENTRAT (fallback dacă nu e pagina auth) === */
+
+
 .form {
   max-width: 440px;
   margin: 0 auto;
@@ -66,7 +64,7 @@
   border-radius: var(--radius-sm);
 }
 
-/* === CLASE REUTILIZABILE FORM === */
+
 .form-label {
   display: block;
   font-size: 0.78rem;
@@ -111,7 +109,7 @@ textarea.form-input {
   line-height: 1.55;
 }
 
-/* === CONTAINER FORMULAR ADMIN === */
+
 .admin-form-container {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -133,7 +131,7 @@ textarea.form-input {
   gap: 8px;
 }
 
-/* Preview preț */
+
 .pret-preview {
   background: linear-gradient(135deg, var(--green-xlight), var(--green-light));
   border: 1px solid #86efac;
@@ -145,7 +143,7 @@ textarea.form-input {
   font-weight: 700;
 }
 
-/* === FORMULAR EDITARE PROFIL === */
+
 .profile-edit-form {
   display: flex;
   flex-direction: column;
@@ -190,7 +188,7 @@ textarea.form-input {
   border-color: var(--border);
 }
 
-/* Secțiunea coordonate în admin form */
+
 .map-coords-section {
   background: var(--bg);
   border: 1.5px solid var(--border);

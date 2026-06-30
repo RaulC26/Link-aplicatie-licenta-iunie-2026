@@ -14,12 +14,12 @@ function TournamentDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Form de înscriere
+  
   const [teamName, setTeamName] = useState("");
   const [captainName, setCaptainName] = useState("");
   const [captainPhone, setCaptainPhone] = useState("");
   const [notes, setNotes] = useState("");
-  // players = array de string-uri, lungimea = tournament.team_size
+  
   const [players, setPlayers] = useState([]);
   const [regLoading, setRegLoading] = useState(false);
   const [regError, setRegError] = useState("");
@@ -39,7 +39,7 @@ function TournamentDetailPage() {
         return;
       }
       setTournament(data);
-      // Inițializăm array-ul de jucători cu strings goale = team_size
+      
       setPlayers(Array(data.team_size).fill(""));
     } catch {
       setError("Eroare conexiune.");
@@ -69,7 +69,7 @@ function TournamentDetailPage() {
       return;
     }
 
-    // Edge case: verificăm că toți jucătorii au nume completat
+    
     const emptyPlayers = players.filter((p) => !p.trim());
     if (emptyPlayers.length > 0) {
       setRegError(
@@ -107,7 +107,7 @@ function TournamentDetailPage() {
       setCaptainPhone("");
       setNotes("");
       setPlayers(Array(tournament.team_size).fill(""));
-      // Reîncărcăm turneul să se actualizeze lista de echipe și numărul
+      
       loadTournament();
     } catch {
       setRegError("Eroare conexiune.");
@@ -141,14 +141,14 @@ function TournamentDetailPage() {
     tournament.max_teams - (tournament.registrations_count || 0);
   const registrationOpen = tournament.status === "upcoming" && spotsLeft > 0;
 
-  // Determinăm dacă turneul are un teren asociat cu imagine
+  
   const hasFieldImage = !!tournament.field_image_url;
-  // Determinăm dacă turneul are coordonate GPS (pentru hartă)
+  
   const hasMap = !!(tournament.field_latitude && tournament.field_longitude);
 
   return (
     <div className="page-container">
-      {/* === HERO: imaginea terenului asociat turneului (dacă există) === */}
+      
       {hasFieldImage && (
         <div className="field-hero" style={{ marginBottom: "28px" }}>
           <img
@@ -159,16 +159,16 @@ function TournamentDetailPage() {
               e.target.style.display = "none";
             }}
           />
-          {/* Overlay întunecat cu gradient — la fel ca FieldDetailPage */}
+          
           <div className="field-hero-overlay">
-            {/* Breadcrumb pe fundalul întunecat */}
+            
             <div className="field-hero-breadcrumb">
               <Link to="/">Acasă</Link> › <Link to="/tournaments">Turnee</Link>{" "}
               › <span>{tournament.name}</span>
             </div>
-            {/* Titlul turneului mare, deasupra imaginii */}
+            
             <h1 className="field-hero-title">{tournament.name}</h1>
-            {/* Locația terenului sub titlu */}
+            
             {tournament.field_location_text && (
               <p className="field-hero-location">
                 {" "}
@@ -178,7 +178,7 @@ function TournamentDetailPage() {
             {tournament.description && (
               <p className="field-hero-desc">{tournament.description}</p>
             )}
-            {/* Badge status turneu */}
+            
             <span
               className={`tournament-status tournament-status-${tournament.status}`}
               style={{ marginTop: "8px", display: "inline-block" }}
@@ -195,7 +195,7 @@ function TournamentDetailPage() {
         </div>
       )}
 
-      {/* Breadcrumb — afișat DOAR dacă nu avem hero cu imagine */}
+      
       {!hasFieldImage && (
         <div className="breadcrumb">
           <Link to="/">Acasă</Link> › <Link to="/tournaments">Turnee</Link> ›{" "}
@@ -203,7 +203,7 @@ function TournamentDetailPage() {
         </div>
       )}
 
-      {/* Header turneu — afișat DOAR dacă nu avem hero (herourile au deja titlul) */}
+      
       {!hasFieldImage && (
         <div className="tournament-detail-header">
           <div
@@ -237,11 +237,11 @@ function TournamentDetailPage() {
         </div>
       )}
 
-      {/* Corp pagină: info stânga + formular dreapta */}
+      
       <div className="tournament-detail-body">
-        {/* === COLOANA STÂNGĂ: detalii + echipe înscrise + hartă === */}
+        
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {/* Card detalii turneu */}
+          
           <div className="tournament-info-card">
             <h3>Detalii turneu</h3>
             <div className="tournament-info-rows">
@@ -260,7 +260,7 @@ function TournamentDetailPage() {
                 </strong>
               </div>
 
-              {/* Locația vine din terenul asociat — afișăm numele terenului dacă există */}
+              
               {tournament.field_name && (
                 <div className="tournament-info-row">
                   <span>Teren</span>
@@ -273,7 +273,7 @@ function TournamentDetailPage() {
                   <strong>{tournament.field_location_text}</strong>
                 </div>
               )}
-              {/* Edge case: dacă turneul nu are teren asociat, afișăm câmpul location vechi */}
+              
               {!tournament.field_name && tournament.location && (
                 <div className="tournament-info-row">
                   <span>Locație</span>
@@ -308,7 +308,7 @@ function TournamentDetailPage() {
             </div>
           </div>
 
-          {/* Card echipe înscrise — vizibil pentru toți utilizatorii */}
+          
           {(tournament.enrolled_teams || []).length > 0 && (
             <div className="tournament-info-card">
               <h3>
@@ -342,7 +342,7 @@ function TournamentDetailPage() {
             </div>
           )}
 
-          {/* Hartă — afișată DOAR dacă terenul asociat are coordonate GPS */}
+          
           {hasMap && (
             <div className="map-section" style={{ marginTop: 0 }}>
               <h2
@@ -368,7 +368,7 @@ function TournamentDetailPage() {
           )}
         </div>
 
-        {/* === COLOANA DREAPTA: formular de înscriere === */}
+        
         <div className="tournament-register-card">
           {!isLoggedIn() ? (
             <div style={{ textAlign: "center", padding: "20px" }}>
@@ -530,13 +530,12 @@ function TournamentDetailPage() {
         </div>
       </div>
 
-      {/* === SECȚIUNEA CÂȘTIGĂTORI ===
- Afișată doar pentru turnee finalizate care au cel puțin locul 1 setat */}
+      
       {tournament.status === "completed" && tournament.winner_first && (
         <div className="tournament-info-card" style={{ marginTop: 24 }}>
           <h3>Câștigătorii turneului</h3>
           <div className="winners-podium">
-            {/* Locul 2 (stanga) */}
+            
             {tournament.winner_second && (
               <div className="winner-card winner-second">
                 <div className="winner-medal"></div>
@@ -544,13 +543,13 @@ function TournamentDetailPage() {
                 <div className="winner-name">{tournament.winner_second}</div>
               </div>
             )}
-            {/* Locul 1 (centru - mai mare) */}
+            
             <div className="winner-card winner-first">
               <div className="winner-medal"></div>
               <div className="winner-place">Campioni</div>
               <div className="winner-name">{tournament.winner_first}</div>
             </div>
-            {/* Locul 3 (dreapta) */}
+            
             {tournament.winner_third && (
               <div className="winner-card winner-third">
                 <div className="winner-medal"></div>

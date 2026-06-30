@@ -1,8 +1,6 @@
-/* ===================================================
-   FIELDS — Carduri terenuri + pagina detalii
-   =================================================== */
 
-/* ── Bara de căutare și filtre ── */
+
+
 .fields-filter-bar {
   display: flex;
   align-items: center;
@@ -11,7 +9,7 @@
   margin-bottom: 20px;
 }
 
-/* Search input cu icon */
+
 .fields-search-wrapper {
   position: relative;
   flex: 1;
@@ -71,7 +69,7 @@
   color: var(--text);
 }
 
-/* Grup filtru (preț + sortare) */
+
 .fields-filter-group {
   display: flex;
   align-items: center;
@@ -105,7 +103,7 @@
   cursor: pointer;
 }
 
-/* Buton reset filtre */
+
 .fields-reset-btn {
   display: flex;
   align-items: center;
@@ -127,7 +125,7 @@
   border-color: var(--red);
 }
 
-/* Număr rezultate */
+
 .fields-results-count {
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -154,14 +152,14 @@
   gap: 24px;
 }
 
-/* Link-ul cardului - acopera intregul card pentru click */
+
 .field-card-link {
   text-decoration: none;
   display: block;
-  height: 100%; /* card uniform - umple celula grid */
+  height: 100%; 
 }
 
-/* Cardul */
+
 .field-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -170,19 +168,19 @@
   border: 1px solid var(--border);
   transition: all var(--t-slow) var(--ease);
   position: relative;
-  /* Toate cardurile au aceeasi inaltime, alinate prin flex column */
+  
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .field-card:hover {
-  /* transform gestionat de framer-motion în FieldsList (whileHover) */
+  
   box-shadow: var(--shadow-xl);
   border-color: var(--border-2);
 }
 
-/* Wrapper imagine */
+
 .field-card-img-wrapper {
   position: relative;
   height: 210px;
@@ -201,7 +199,7 @@
   transform: scale(1.07);
 }
 
-/* Overlay jos pe imagine */
+
 .field-card-img-wrapper::after {
   content: "";
   position: absolute;
@@ -213,7 +211,7 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
 }
 
-/* Placeholder */
+
 .field-card-placeholder {
   width: 100%;
   height: 100%;
@@ -224,10 +222,10 @@
   background: linear-gradient(135deg, #1a2540, #0d1424);
 }
 
-/* Corp card - creste sa umple inaltimea ramasa dupa imagine */
+
 .field-card-body {
   padding: 20px 22px 22px;
-  flex: 1; /* impinge footer-row la baza, alineaza toate cardurile */
+  flex: 1; 
   display: flex;
   flex-direction: column;
 }
@@ -313,7 +311,7 @@
   gap: 8px;
 }
 
-/* Locație tag (disponibil GPS) */
+
 .field-card-map-tag {
   font-size: 0.72rem;
   color: var(--indigo);
@@ -324,7 +322,7 @@
   font-weight: 600;
 }
 
-/* ===== HERO PAGINA DETALII TEREN ===== */
+
 .field-hero {
   position: relative;
   border-radius: var(--radius-2xl);
@@ -416,7 +414,7 @@
   letter-spacing: 0.1px;
 }
 
-/* ===== HARTĂ ===== */
+
 .map-section {
   margin-top: 28px;
   padding: 30px 36px;
@@ -481,7 +479,7 @@
   animation: spin 0.75s linear infinite;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .fields-list {
     grid-template-columns: 1fr;

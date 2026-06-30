@@ -1,6 +1,4 @@
-/* ===================================================
-   NAVBAR — Glassmorphism, sticky
-   =================================================== */
+
 
 .navbar {
   display: flex;
@@ -21,7 +19,7 @@
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* Logo */
+
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -43,7 +41,7 @@
   flex-shrink: 0;
 }
 
-/* Logo PNG fotrez - no buffer, dimensiune naturala */
+
 .navbar-logo-img {
   width: 44px;
   height: 44px;
@@ -61,7 +59,7 @@
   text-transform: uppercase;
 }
 
-/* Salut, prenume! — text vizibil cand userul e logat */
+
 .navbar-greeting {
   color: var(--green);
   font-weight: 700;
@@ -75,7 +73,7 @@
   margin-right: 4px;
 }
 
-/* Separator vizibil între logo și links */
+
 .navbar-sep {
   width: 1px;
   height: 20px;
@@ -84,7 +82,7 @@
   flex-shrink: 0;
 }
 
-/* Link-uri navigare */
+
 .navbar-links {
   display: flex;
   align-items: center;
@@ -113,13 +111,13 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Link activ curent */
+
 .navbar-links a.active-link {
   color: var(--white);
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Link admin */
+
 .navbar-admin-link {
   color: #fbbf24 !important;
   font-weight: 700 !important;
@@ -130,7 +128,7 @@
   color: #fde68a !important;
 }
 
-/* Grup butoane auth (din dreapta) */
+
 .navbar-auth-group {
   display: flex;
   align-items: center;
@@ -170,7 +168,7 @@
   transform: translateY(-1px) !important;
 }
 
-/* Buton logout */
+
 .btn-logout {
   background: transparent;
   color: #f87171;
@@ -194,7 +192,7 @@
   box-shadow: 0 0 16px rgba(248, 113, 113, 0.3);
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
   .navbar {
     padding: 0 1.2rem;

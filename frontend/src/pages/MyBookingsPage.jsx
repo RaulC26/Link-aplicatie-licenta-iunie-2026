@@ -8,12 +8,12 @@ function MyBookingsPage() {
   const [activeTab, setActiveTab] = useState("bookings");
   const user = getUserFromToken();
 
-  // Inițiala pentru avatar
+  
   const initial = user?.email ? user.email.charAt(0).toUpperCase() : "?";
 
   return (
     <div className="page-container">
-      {/* Header vizual */}
+      
       <div className="my-account-header">
         <div className="my-account-avatar-big">{initial}</div>
         <div className="my-account-info">
@@ -22,7 +22,7 @@ function MyBookingsPage() {
         </div>
       </div>
 
-      {/* Tab-uri */}
+      
       <div className="admin-tabs" style={{ marginBottom: "28px" }}>
         <button
           className={

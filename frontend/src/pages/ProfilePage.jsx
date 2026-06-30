@@ -13,7 +13,7 @@ import { SkeletonProfile } from "../components/Skeleton";
 import ConfirmModal from "../components/ConfirmModal";
 import { useToast } from "../context/ToastContext";
 
-// Helper: validez parola complexa (aceleasi reguli ca pe Register)
+
 function validatePassword(pw) {
   return {
     length: pw.length >= 8,
@@ -27,13 +27,13 @@ function ProfilePage() {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
-  // Tab activ: 'info' sau 'password'
+  
   const [activeTab, setActiveTab] = useState("info");
 
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  // Edit profil
+  
   const [editMode, setEditMode] = useState(false);
   const [editName, setEditName] = useState("");
   const [editPhone, setEditPhone] = useState("");
@@ -41,7 +41,7 @@ function ProfilePage() {
   const [saveError, setSaveError] = useState("");
   const [saveSuccess, setSaveSuccess] = useState("");
 
-  // Schimbare parola
+  
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,11 +52,11 @@ function ProfilePage() {
   const [passError, setPassError] = useState("");
   const [passSuccess, setPassSuccess] = useState("");
 
-  // Reguli parola noua - feedback in timp real
+  
   const pwRules = validatePassword(newPassword);
   const allPwRulesValid = Object.values(pwRules).every(Boolean);
 
-  // Stergere cont
+  
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -117,8 +117,8 @@ function ProfilePage() {
       }
 
       setUser(data.user);
-      // Edge case: salvam tokenul nou (cu numele actualizat) si anuntam navbarul
-      // sa-si reciteasca prenumele din JWT pentru "Salut, prenume!"
+      
+      
       if (data.token) {
         saveToken(data.token);
         window.dispatchEvent(new Event("user-updated"));
@@ -179,7 +179,7 @@ function ProfilePage() {
     }
   }
 
-  // Edge case: stergerea contului — backend verifica daca user-ul are rezervari active
+  
   async function handleConfirmDelete() {
     setShowDeleteModal(false);
     setDeleteLoading(true);
@@ -196,7 +196,7 @@ function ProfilePage() {
       }
       showToast("Cont șters definitiv.", "success");
       removeToken();
-      // Redirectam si dam reload ca sa se reseteze tot UI-ul
+      
       setTimeout(() => {
         navigate("/");
         window.location.reload();
@@ -240,7 +240,7 @@ function ProfilePage() {
 
       <h1>Profilul meu</h1>
 
-      {/* Header redesenat: banner gradient + avatar + info la dreapta */}
+      
       <div className="profile-hero">
         <div className="profile-hero-bg" />
         <div className="profile-hero-content">
@@ -263,7 +263,7 @@ function ProfilePage() {
         </div>
       </div>
 
-      {/* Tab-uri */}
+      
       <div className="profile-tabs">
         <button
           className={
@@ -294,7 +294,7 @@ function ProfilePage() {
         </button>
       </div>
 
-      {/* ===== TAB DATE PERSONALE ===== */}
+      
       {activeTab === "info" && (
         <div className="profile-card">
           {!editMode ? (
@@ -356,7 +356,7 @@ function ProfilePage() {
                 </div>
               </div>
 
-              {/* Buton sterge cont sub informatiile personale */}
+              
               <div
                 style={{
                   marginTop: "24px",
@@ -449,7 +449,7 @@ function ProfilePage() {
         </div>
       )}
 
-      {/* ===== TAB SCHIMBA PAROLA ===== */}
+      
       {activeTab === "password" && (
         <div className="profile-card">
           <div className="profile-card-header">
@@ -500,7 +500,7 @@ function ProfilePage() {
               </button>
             </div>
 
-            {/* Reguli parola noua - feedback in timp real */}
+            
             {newPassword && (
               <ul className="password-rules" style={{ marginBottom: "12px" }}>
                 <li className={pwRules.length ? "rule-ok" : "rule-bad"}>

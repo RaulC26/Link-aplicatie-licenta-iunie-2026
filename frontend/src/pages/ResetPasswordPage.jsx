@@ -73,7 +73,7 @@ function ResetPasswordPage() {
     }
   }
 
-  // Daca lipsesc parametrii din URL, afisam mesaj de eroare
+  
   if (!token || !email) {
     return (
       <div className="auth-page">

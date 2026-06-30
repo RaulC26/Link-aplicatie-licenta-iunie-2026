@@ -5,7 +5,7 @@ import { API_URL } from "../utils/api";
 import ErrorMessage from "../components/ErrorMessage";
 import { SkeletonTournamentCard } from "../components/Skeleton";
 
-// Mapări status → text, clasă CSS, emoji indicator
+
 const statusLabel = {
   upcoming: "Înscrieri deschise",
   active: "În desfășurare",
@@ -25,7 +25,7 @@ const statusDot = {
   cancelled: "🔴",
 };
 
-// Variante stagger — grila de turnee apare card cu card
+
 const gridContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
@@ -67,7 +67,7 @@ function TournamentsPage() {
     }
   }
 
-  // Formatăm data cu timezone-safe (adăugăm T12:00:00 pentru a evita shift-ul de zi)
+  
   function formatDate(raw) {
     if (!raw) return "—";
     return new Date(
@@ -79,7 +79,7 @@ function TournamentsPage() {
     });
   }
 
-  // Calculăm câte zile mai sunt până la deadline-ul de înscriere
+  
   function daysUntilDeadline(raw) {
     if (!raw) return null;
     const diff = Math.ceil(
@@ -89,7 +89,7 @@ function TournamentsPage() {
     return diff;
   }
 
-  // Filtrăm turneele în funcție de status selectat
+  
   const filtered =
     filter === "all"
       ? tournaments
@@ -114,7 +114,7 @@ function TournamentsPage() {
 
   return (
     <div className="page-container">
-      {/* ===== HERO TURNEE ===== */}
+      
       <motion.div
         className="tournaments-hero"
         initial={{ opacity: 0, y: 24 }}
@@ -129,7 +129,7 @@ function TournamentsPage() {
         </p>
       </motion.div>
 
-      {/* ===== FILTRE STATUS ===== */}
+      
       <motion.div
         className="tournaments-filter"
         initial={{ opacity: 0, y: 16 }}
@@ -148,7 +148,7 @@ function TournamentsPage() {
             onClick={() => setFilter(f.key)}
           >
             {f.label}
-            {/* Badge cu număr total — apare doar pentru filtrul "Toate" */}
+            
             {f.count !== undefined && (
               <span
                 style={{
@@ -166,7 +166,7 @@ function TournamentsPage() {
         ))}
       </motion.div>
 
-      {/* ===== GRID TURNEE ===== */}
+      
       {filtered.length === 0 ? (
         <motion.div
           className="empty-state"
@@ -182,7 +182,7 @@ function TournamentsPage() {
           </p>
         </motion.div>
       ) : (
-        // Grid animat cu stagger — cardurile apar succesiv la schimbarea filtrului
+        
         <motion.div
           className="tournaments-grid"
           key={filter}
@@ -202,7 +202,7 @@ function TournamentsPage() {
             );
 
             return (
-              // Card cu animație de apariție și hover cu ridicare
+              
               <motion.div
                 key={t.id}
                 className="tournament-card"
@@ -212,11 +212,11 @@ function TournamentsPage() {
                   transition: { duration: 0.22, ease: "easeOut" },
                 }}
               >
-                {/* Bară colorată sus pentru identitate vizuală */}
+                
                 <div className="tournament-card-header-band" />
 
                 <div className="tournament-card-body">
-                  {/* Badge status + countdown deadline */}
+                  
                   <div className="tournament-card-top">
                     <span
                       className={`tournament-status ${statusClass[t.status] || ""}`}
@@ -228,7 +228,7 @@ function TournamentsPage() {
                         ⏰ {days} {days === 1 ? "zi" : "zile"}
                       </span>
                     )}
-                    {/* Edge case: deadline expirat dar turneul e încă upcoming */}
+                    
                     {t.status === "upcoming" && days !== null && days <= 0 && (
                       <span className="tournament-deadline">⏰ Expirat</span>
                     )}
@@ -240,7 +240,7 @@ function TournamentsPage() {
                     <p className="tournament-description">{t.description}</p>
                   )}
 
-                  {/* Grid meta cu detalii turneu — 2 coloane */}
+                  
                   <div className="tournament-meta">
                     {t.location && (
                       <div className="tournament-meta-item">
@@ -266,7 +266,7 @@ function TournamentsPage() {
                     )}
                   </div>
 
-                  {/* Bara de locuri disponibile — fill progresiv */}
+                  
                   <div className="tournament-spots-bar">
                     <div className="tournament-spots-label">
                       <span>

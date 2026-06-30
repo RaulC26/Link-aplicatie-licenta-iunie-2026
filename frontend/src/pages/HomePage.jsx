@@ -1,17 +1,17 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-// Icoane Lucide pentru features și butoane hero
+
 import { CalendarCheck, Map, Trophy, Rocket, ArrowRight } from "lucide-react";
 import FieldsList from "../components/FieldsList";
 import { isLoggedIn } from "../utils/auth";
 
-// Animație hero content — apare din jos la montare
+
 const heroVariants = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-// Stagger pentru statisticile din hero — apar pe rând cu delay
+
 const statsContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1, delayChildren: 0.35 } },
@@ -21,7 +21,7 @@ const statItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.38 } },
 };
 
-// Stagger pentru features strip — se activează când intră în viewport
+
 const featuresContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.13 } },
@@ -34,16 +34,16 @@ const featureItem = {
 function HomePage() {
   return (
     <div className="page-container">
-      {/* ===== HERO ===== */}
+      
       <div className="hero-section">
-        {/* Conținut principal animat la montare */}
+        
         <motion.div
           className="hero-content"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Badge "live" cu dot verde pulsator */}
+          
           <div className="hero-badge">
             <span className="hero-badge-dot" />
             Cea mai mare platformă de rezervări de terenuri sintetice de fotbal.
@@ -64,7 +64,7 @@ function HomePage() {
           <div className="hero-actions">
             {!isLoggedIn() ? (
               <>
-                {/* Buton principal cu iconița Rocket */}
+                
                 <Link to="/register" className="btn-primary">
                   <Rocket size={16} strokeWidth={2.5} />
                   Începe gratuit
@@ -84,7 +84,7 @@ function HomePage() {
           </div>
         </motion.div>
 
-        {/* Statistici rapide cu stagger — apar pe rând după hero content */}
+        
         <motion.div
           className="hero-stats"
           variants={statsContainer}
@@ -140,7 +140,7 @@ function HomePage() {
         </motion.div>
       </div>
 
-      {/* ===== FEATURES STRIP — apare când intră în viewport ===== */}
+      
       <motion.div
         className="features-strip"
         variants={featuresContainer}
@@ -148,7 +148,7 @@ function HomePage() {
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        {/* Feature 1 — Rezervare instant cu iconiță verde */}
+        
         <motion.div
           className="feature-box"
           variants={featureItem}
@@ -170,7 +170,7 @@ function HomePage() {
           </div>
         </motion.div>
 
-        {/* Feature 2 — Hartă interactivă cu iconiță indigo */}
+        
         <motion.div
           className="feature-box"
           variants={featureItem}
@@ -185,7 +185,7 @@ function HomePage() {
           </div>
         </motion.div>
 
-        {/* Feature 3 — Turnee cu iconiță amber */}
+        
         <motion.div
           className="feature-box"
           variants={featureItem}
@@ -204,12 +204,12 @@ function HomePage() {
         </motion.div>
       </motion.div>
 
-      {/* ===== HEADER SECȚIUNE TERENURI ===== */}
+      
       <div className="section-header">
         <h2>Terenuri disponibile</h2>
       </div>
 
-      {/* Lista terenuri — are propria animație stagger internă */}
+      
       <FieldsList />
     </div>
   );

@@ -1,11 +1,9 @@
-/* ===================================================
-   BASE — Design tokens, reset, tipografie, utilitare
-   =================================================== */
+
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
-  /* === CULORI PRIMARE === */
+  
   --green: #22c55e;
   --green-dark: #16a34a;
   --green-mid: #1db954;
@@ -13,7 +11,7 @@
   --green-xlight: #f0fdf4;
   --green-glow: rgba(34, 197, 94, 0.25);
 
-  /* === DARK / NAVY === */
+  
   --navy: #05080f;
   --navy-2: #080d1a;
   --navy-3: #0d1424;
@@ -22,13 +20,13 @@
   --navy-border: rgba(255, 255, 255, 0.07);
   --navy-text: #94a3b8;
 
-  /* === INDIGO (selectat/info) === */
+  
   --indigo: #6366f1;
   --indigo-dark: #4f46e5;
   --indigo-light: #eef2ff;
   --indigo-glow: rgba(99, 102, 241, 0.25);
 
-  /* === CULORI SEMANTICE === */
+  
   --red: #ef4444;
   --red-dark: #dc2626;
   --red-light: #fef2f2;
@@ -41,21 +39,21 @@
   --orange: #f97316;
   --orange-light: #fff7ed;
 
-  /* === TEXTE === */
+  
   --text: #0a0f1e;
   --text-2: #1e293b;
   --text-muted: #64748b;
   --text-light: #94a3b8;
   --text-xlight: #cbd5e1;
 
-  /* === FUNDALURI === */
+  
   --bg: #f1f4fb;
   --bg-2: #e8edf8;
   --white: #ffffff;
   --border: #dde3f0;
   --border-2: #c8d0e4;
 
-  /* === UMBRE === */
+  
   --shadow-xs: 0 1px 2px rgba(10, 15, 30, 0.05);
   --shadow-sm:
     0 2px 8px rgba(10, 15, 30, 0.07), 0 1px 2px rgba(10, 15, 30, 0.04);
@@ -69,7 +67,7 @@
   --shadow-green: 0 8px 32px rgba(34, 197, 94, 0.28);
   --shadow-indigo: 0 8px 32px rgba(99, 102, 241, 0.28);
 
-  /* === RAZE === */
+  
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius: 14px;
@@ -78,7 +76,7 @@
   --radius-2xl: 40px;
   --radius-pill: 9999px;
 
-  /* === TRANZIȚII === */
+  
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -86,7 +84,7 @@
   --t-slow: 0.35s;
 }
 
-/* ===== RESET ===== */
+
 *,
 *::before,
 *::after {
@@ -123,7 +121,7 @@ body {
   flex-direction: column;
 }
 
-/* Focus ring */
+
 :focus-visible {
   outline: 2px solid var(--indigo);
   outline-offset: 3px;
@@ -144,7 +142,7 @@ img {
   height: auto;
 }
 
-/* ===== LAYOUT ===== */
+
 .page-content {
   max-width: 1240px;
   margin: 0 auto;
@@ -160,7 +158,7 @@ img {
   padding: 44px 0;
 }
 
-/* ===== TIPOGRAFIE ===== */
+
 h1 {
   font-size: 2.1rem;
   font-weight: 800;
@@ -187,7 +185,7 @@ p {
   line-height: 1.65;
 }
 
-/* ===== MESAJE ===== */
+
 .error {
   display: flex;
   align-items: flex-start;
@@ -218,7 +216,7 @@ p {
   border-left: 3px solid var(--green);
 }
 
-/* Loader cu spinner */
+
 .loader {
   padding: 48px 0;
   color: var(--text-muted);
@@ -294,7 +292,7 @@ hr {
   margin: 24px 0;
 }
 
-/* ===== MODAL ===== */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -322,7 +320,7 @@ hr {
   animation: slideUp 0.3s var(--ease-spring);
 }
 
-/* ===== CONFIRM MODAL ===== */
+
 .confirm-modal-box {
   max-width: 420px;
   text-align: center;
@@ -395,7 +393,7 @@ hr {
   min-width: 110px;
 }
 
-/* ===== EMPTY STATE ===== */
+
 .empty-state {
   text-align: center;
   padding: 80px 20px;
@@ -419,7 +417,7 @@ hr {
   margin: 0 auto;
 }
 
-/* ===== BREADCRUMB ===== */
+
 .breadcrumb {
   font-size: 0.82rem;
   color: var(--text-muted);
@@ -437,7 +435,7 @@ hr {
   color: var(--green);
 }
 
-/* ===== PAGE HEADER REUSABIL ===== */
+
 .page-hero-bar {
   background: linear-gradient(
     135deg,
@@ -481,7 +479,7 @@ hr {
   max-width: 480px;
 }
 
-/* ===== FOOTER ===== */
+
 .footer {
   background: var(--navy-2);
   color: var(--navy-text);
@@ -586,9 +584,9 @@ hr {
   font-weight: 700;
 }
 
-/* ===== TOAST v2 — nou, cu progress bar și icoane ===== */
 
-/* Container fix în colțul dreapta-jos — stivuiește mai multe toasturi */
+
+
 .toast-container {
   position: fixed;
   bottom: 24px;
@@ -597,7 +595,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  pointer-events: none; /* permite click prin container, nu prin toasturi */
+  pointer-events: none; 
 }
 
 .toast-v2 {
@@ -616,7 +614,7 @@ hr {
   max-width: 400px;
 }
 
-/* Icoana colorată */
+
 .toast-v2-icon {
   flex-shrink: 0;
   display: flex;
@@ -643,7 +641,7 @@ hr {
   color: var(--indigo-dark);
 }
 
-/* Mesajul */
+
 .toast-v2-message {
   flex: 1;
   font-size: 0.875rem;
@@ -652,7 +650,7 @@ hr {
   line-height: 1.4;
 }
 
-/* Buton X */
+
 .toast-v2-close {
   flex-shrink: 0;
   background: none;
@@ -673,7 +671,7 @@ hr {
   background: var(--bg);
 }
 
-/* Progress bar care se golește în DURATION ms */
+
 .toast-v2-progress {
   position: absolute;
   bottom: 0;
@@ -706,7 +704,7 @@ hr {
   }
 }
 
-/* ===== SKELETON — loading placeholder ===== */
+
 .skeleton {
   background: linear-gradient(90deg, #f0f3fa 25%, #e4e8f5 50%, #f0f3fa 75%);
   background-size: 200% 100%;
@@ -722,7 +720,7 @@ hr {
   }
 }
 
-/* Skeleton card teren */
+
 .skeleton-field-card {
   background: var(--white);
   border-radius: var(--radius-xl);
@@ -761,7 +759,7 @@ hr {
   margin-top: 4px;
 }
 
-/* Skeleton booking card */
+
 .skeleton-booking-card {
   background: var(--white);
   border-radius: var(--radius-xl);
@@ -774,7 +772,7 @@ hr {
   border-left: 4px solid var(--border);
 }
 
-/* Skeleton tournament card */
+
 .skeleton-tournament-card {
   background: var(--white);
   border-radius: var(--radius-xl);
@@ -786,7 +784,7 @@ hr {
   gap: 12px;
 }
 
-/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px) {
   .footer-inner {
     grid-template-columns: 1fr 1fr;

@@ -21,7 +21,7 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {/* Container toasturi — în afara oricărui layout */}
+      
       <div className="toast-container">
         {toasts.map((t) => (
           <ToastItem key={t.id} toast={t} onClose={() => removeToast(t.id)} />
@@ -31,7 +31,7 @@ export function ToastProvider({ children }) {
   );
 }
 
-// Componenta individuală de toast — importată intern
+
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, XCircle, AlertTriangle, Info, X } from "lucide-react";
@@ -43,17 +43,17 @@ const ICONS = {
   info: <Info size={20} strokeWidth={2.5} />,
 };
 
-const DURATION = 3800; // milisecunde
+const DURATION = 3800; 
 
 function ToastItem({ toast, onClose }) {
-  // Ref pentru progress bar — animăm width de la 100% la 0%
+  
   const progressRef = useRef(null);
 
   useEffect(() => {
-    // Dispare automat după DURATION ms
+    
     const timer = setTimeout(onClose, DURATION);
 
-    // Animăm progress bar-ul via CSS custom property
+    
     if (progressRef.current) {
       progressRef.current.style.animationDuration = `${DURATION}ms`;
     }
@@ -70,20 +70,20 @@ function ToastItem({ toast, onClose }) {
       transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
       layout
     >
-      {/* Icoana colorată */}
+      
       <span className={`toast-v2-icon toast-v2-icon-${toast.type}`}>
         {ICONS[toast.type] || ICONS.info}
       </span>
 
-      {/* Mesajul */}
+      
       <span className="toast-v2-message">{toast.message}</span>
 
-      {/* Buton închidere manual */}
+      
       <button className="toast-v2-close" onClick={onClose} aria-label="Închide">
         <X size={14} strokeWidth={2.5} />
       </button>
 
-      {/* Progress bar care se golește în DURATION ms */}
+      
       <div
         ref={progressRef}
         className={`toast-v2-progress toast-v2-progress-${toast.type}`}

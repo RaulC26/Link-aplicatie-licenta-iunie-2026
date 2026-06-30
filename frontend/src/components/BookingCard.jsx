@@ -112,7 +112,7 @@ function BookingCard({ booking, onCancel }) {
   const now = new Date();
   const todayStr = localDateStr(now);
   const bookingDateStr = localDateStr(booking.booking_date);
-  const bookingStart = String(booking.start_time).substring(0, 5); // ex: "09:00"
+  const bookingStart = String(booking.start_time).substring(0, 5); 
   const currentHHMM =
     String(now.getHours()).padStart(2, "0") +
     ":" +

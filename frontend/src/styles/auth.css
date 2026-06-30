@@ -1,15 +1,13 @@
-/* ===================================================
-   AUTH — Login & Register cu layout split full-screen
-   =================================================== */
 
-/* Container full-screen split */
+
+
 .auth-page {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-/* ===== PANOUL STÂNGA — dark, branding ===== */
+
 .auth-left {
   background: linear-gradient(
     160deg,
@@ -25,7 +23,7 @@
   overflow: hidden;
 }
 
-/* Orb-uri decorative */
+
 .auth-left::before {
   content: "";
   position: absolute;
@@ -58,7 +56,7 @@
   pointer-events: none;
 }
 
-/* Grilă punctată */
+
 .auth-left-grid {
   position: absolute;
   inset: 0;
@@ -70,7 +68,7 @@
   pointer-events: none;
 }
 
-/* Logo în stânga sus */
+
 .auth-logo {
   display: flex;
   align-items: center;
@@ -89,14 +87,14 @@
   flex-shrink: 0;
 }
 
-/* Imaginea logo-ului din interior - se intinde sa umple containerul */
+
 .auth-logo-icon > div {
   width: 100% !important;
   height: 100% !important;
   background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  /* Filtrul drop-shadow ofera glow verde subtil in jurul logo-ului */
+  
   filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.4));
 }
 
@@ -116,7 +114,7 @@
   letter-spacing: 0;
 }
 
-/* Conținut central al panoului stânga */
+
 .auth-left-content {
   position: relative;
   z-index: 1;
@@ -151,7 +149,7 @@
   margin-bottom: 36px;
 }
 
-/* Lista cu features */
+
 .auth-features {
   list-style: none;
   display: flex;
@@ -214,7 +212,7 @@
   margin: 0;
 }
 
-/* Stats jos pe panoul stânga */
+
 .auth-stats {
   display: flex;
   gap: 28px;
@@ -236,7 +234,7 @@
   font-weight: 500;
 }
 
-/* ===== PANOUL DREAPTA — form alb ===== */
+
 .auth-right {
   background: var(--white);
   display: flex;
@@ -247,7 +245,7 @@
   position: relative;
 }
 
-/* Decorație subtilă */
+
 .auth-right::before {
   content: "";
   position: absolute;
@@ -284,7 +282,7 @@
   line-height: 1.5;
 }
 
-/* Input group modernizat */
+
 .auth-input-group {
   margin-bottom: 18px;
 }
@@ -313,7 +311,7 @@
   pointer-events: none;
 }
 
-/* Buton toggle "ochi" pentru afisare/ascundere parola */
+
 .auth-input-toggle {
   position: absolute;
   right: 12px;
@@ -341,7 +339,7 @@
   outline-offset: 2px;
 }
 
-/* Lista cu cerintele de parola - feedback vizual in timp real */
+
 .password-rules {
   list-style: none;
   padding: 0;
@@ -394,7 +392,7 @@
   color: var(--text-xlight);
 }
 
-/* Buton submit auth */
+
 .auth-submit {
   width: 100%;
   padding: 13px;
@@ -429,7 +427,7 @@
   transform: none;
 }
 
-/* Link-ul de swap login ↔ register */
+
 .auth-swap {
   text-align: center;
   margin-top: 24px;
@@ -447,7 +445,7 @@
   text-decoration: underline;
 }
 
-/* Divider "sau" */
+
 .auth-divider {
   display: flex;
   align-items: center;
@@ -466,7 +464,7 @@
   background: var(--border);
 }
 
-/* Tag opțional */
+
 .auth-optional {
   font-size: 0.75rem;
   color: var(--text-light);
@@ -474,7 +472,7 @@
   margin-left: 4px;
 }
 
-/* Mesaj expirat sesiune */
+
 .auth-expired-msg {
   display: flex;
   align-items: center;
@@ -490,7 +488,7 @@
   font-weight: 500;
 }
 
-/* Responsive auth */
+
 @media (max-width: 900px) {
   .auth-page {
     grid-template-columns: 1fr;

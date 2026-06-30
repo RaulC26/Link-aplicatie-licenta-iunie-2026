@@ -10,7 +10,7 @@ function AdminDashboardPage() {
 
   return (
     <div className="page-container">
-      {/* Header admin */}
+      
       <div className="page-hero-bar" style={{ marginBottom: "32px" }}>
         <div style={{ position: "relative", zIndex: 1 }}>
           <div
@@ -48,7 +48,7 @@ function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Tab-uri */}
+    
       <div className="admin-tabs">
         <button
           className={activeTab === "fields" ? "admin-tab active" : "admin-tab"}

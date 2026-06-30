@@ -5,11 +5,11 @@ import { CalendarCheck, Trophy, CreditCard } from "lucide-react";
 function LoginPage() {
   return (
     <div className="auth-page">
-      {/* ===== PANOUL STÂNGA — branding ===== */}
+      
       <div className="auth-left">
         <div className="auth-left-grid" />
 
-        {/* Logo */}
+        
         <Link to="/" className="auth-logo">
           <div className="auth-logo-icon">
             <div
@@ -29,7 +29,7 @@ function LoginPage() {
           </div>
         </Link>
 
-        {/* Conținut central */}
+        
         <div className="auth-left-content">
           <p className="auth-tagline">
             Rezervă rapid și ușor
@@ -74,7 +74,7 @@ function LoginPage() {
         </div>
       </div>
 
-      {/* ===== PANOUL DREAPTA — formular ===== */}
+      
       <div className="auth-right">
         <div className="auth-form-box">
           <h2 className="auth-form-title">Bine ai revenit</h2>

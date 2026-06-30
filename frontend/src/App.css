@@ -1,6 +1,4 @@
-/* ===================================================
-   App.css — Importă toate fișierele CSS separate
-   =================================================== */
+
 
 @import "./styles/base.css";
 @import "./styles/auth.css";

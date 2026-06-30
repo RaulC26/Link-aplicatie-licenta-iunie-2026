@@ -1,8 +1,6 @@
-/* ===================================================
-   BUTTONS — Sistem complet de butoane
-   =================================================== */
 
-/* === PRIMAR verde gradient === */
+
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -55,7 +53,7 @@
   box-shadow: none;
 }
 
-/* === SECUNDAR ghost === */
+
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -81,7 +79,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* === PERICOL roșu === */
+
 .btn-danger {
   display: inline-flex;
   align-items: center;
@@ -107,7 +105,7 @@
   transform: scale(0.98);
 }
 
-/* === PLATĂ albastru === */
+
 .btn-pay {
   display: inline-flex;
   align-items: center;
@@ -134,7 +132,7 @@
   transform: none;
 }
 
-/* === Label rezervare expirată neplătită === */
+
 .booking-expired-label {
   display: inline-flex;
   align-items: center;
@@ -148,7 +146,7 @@
   border: 1px solid #fde68a;
 }
 
-/* === EDITARE tabel admin — mic === */
+
 .btn-edit {
   background: var(--blue-light);
   color: #2563eb;
@@ -167,7 +165,7 @@
   background: #dbeafe;
 }
 
-/* === ȘTERGERE tabel admin — mic === */
+
 .btn-delete {
   background: var(--red-light);
   color: #b91c1c;
@@ -186,7 +184,7 @@
   background: #fee2e2;
 }
 
-/* === EDITARE PROFIL === */
+
 .btn-edit-profile {
   display: inline-flex;
   align-items: center;
@@ -207,7 +205,7 @@
   box-shadow: var(--shadow-green);
 }
 
-/* === STATUS echipe turnee === */
+
 .btn-approve {
   background: var(--green-xlight);
   color: #166534;
@@ -262,7 +260,7 @@
   background: #fef3c7;
 }
 
-/* === GEOCODE — buton detectare adresă === */
+
 .btn-geocode {
   font-size: 0.8rem;
   font-weight: 700;

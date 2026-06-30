@@ -1,8 +1,6 @@
-/* ===================================================
-   SLOTS — Picker sloturi orare, confirmare, popup
-   =================================================== */
 
-/* Secțiunea de rezervare */
+
+
 .booking-section {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -11,7 +9,7 @@
   border: 1px solid var(--border);
 }
 
-/* ===== BARA DE SELECTARE DATĂ (stil Booksport) ===== */
+
 .datepicker-bar {
   display: flex;
   align-items: center;
@@ -24,7 +22,7 @@
   margin-bottom: 28px;
 }
 
-/* Butoanele de navigare stânga/dreapta */
+
 .datepicker-nav {
   background: transparent;
   border: 1.5px solid var(--border);
@@ -51,7 +49,7 @@
   cursor: not-allowed;
 }
 
-/* Grid cu 7 zile */
+
 .datepicker-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -59,7 +57,7 @@
   flex: 1;
 }
 
-/* Butonul individual pentru o zi */
+
 .datepicker-day {
   display: flex;
   flex-direction: column;
@@ -81,7 +79,7 @@
   border-color: #bbf7d0;
 }
 
-/* Textul "Lun", "Mar", etc. */
+
 .dp-day-name {
   font-size: 0.7rem;
   font-weight: 700;
@@ -90,14 +88,14 @@
   letter-spacing: 0.3px;
 }
 
-/* Data DD.MM */
+
 .dp-day-date {
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-2);
 }
 
-/* Label "astăzi" sub data de azi */
+
 .dp-day-label {
   font-size: 0.6rem;
   font-weight: 700;
@@ -106,7 +104,7 @@
   letter-spacing: 0.2px;
 }
 
-/* Ziua de azi (nemarcată ca selectată) */
+
 .datepicker-day-today .dp-day-name {
   color: var(--green-dark);
 }
@@ -114,7 +112,7 @@
   color: var(--green-dark);
 }
 
-/* Ziua selectată — gradient verde */
+
 .datepicker-day-selected {
   background: linear-gradient(
     135deg,
@@ -131,7 +129,7 @@
   color: var(--white) !important;
 }
 
-/* Zilele trecute — grizate, dezactivate */
+
 .datepicker-day-past {
   opacity: 0.3;
   cursor: not-allowed;
@@ -140,7 +138,7 @@
   color: var(--text-light);
 }
 
-/* Responsive — pe mobile textul se micșorează */
+
 @media (max-width: 640px) {
   .datepicker-bar {
     padding: 8px 6px;
@@ -162,7 +160,7 @@
   }
 }
 
-/* Selector dată */
+
 .date-picker-row {
   display: flex;
   align-items: center;
@@ -199,7 +197,7 @@
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
-/* ===== GRID SLOTURI ===== */
+
 .slots-grid {
   display: flex;
   flex-wrap: wrap;
@@ -264,7 +262,7 @@
     0 4px 14px var(--indigo-glow);
 }
 
-/* ===== LEGENDĂ ===== */
+
 .slots-legend {
   display: flex;
   gap: 20px;
@@ -296,7 +294,7 @@
   background: var(--indigo);
 }
 
-/* ===== PANEL CONFIRMARE ===== */
+
 .booking-confirm-panel {
   background: linear-gradient(135deg, var(--green-xlight), #f0fdf4);
   border: 1.5px solid #86efac;
@@ -343,7 +341,7 @@
   color: var(--green-dark);
 }
 
-/* ===== POPUP SUCCES ===== */
+
 .success-popup {
   text-align: center;
   max-width: 440px;
@@ -400,7 +398,7 @@
   font-weight: 800;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .booking-section {
     padding: 22px 20px;

@@ -278,7 +278,9 @@ function AdminFieldForm({ field, onSuccess, onCancel }) {
             }}
           >
             Lasă gol dacă nu vrei să afișezi harta. Folosește "Detectează din
+
             adresă" pentru completare automată.
+
           </small>
         </div>
 

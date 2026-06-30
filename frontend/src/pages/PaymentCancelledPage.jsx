@@ -18,7 +18,7 @@ function PaymentCancelledPage() {
           Ai anulat procesul de plată.
         </p>
 
-        {/* Edge case: rezervarea rămâne activă cu status 'pending' - userul poate plăti mai târziu */}
+        
         <p
           style={{
             color: "#6b7280",
@@ -39,7 +39,7 @@ function PaymentCancelledPage() {
             flexWrap: "wrap",
           }}
         >
-          {/* "Încearcă din nou" duce la my-bookings unde poate apăsa Plătește */}
+          
           <Link to="/my-bookings" className="btn-primary">
             Încearcă din nou
           </Link>

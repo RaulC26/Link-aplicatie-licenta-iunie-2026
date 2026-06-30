@@ -1,8 +1,6 @@
-/* ===================================================
-   BOOKINGS — Carduri rezervări, badge-uri, plată
-   =================================================== */
 
-/* ── Tab-uri Viitoare / Trecute / Anulate / Toate ── */
+
+
 .bookings-tabs {
   display: flex;
   gap: 6px;
@@ -35,21 +33,21 @@
   box-shadow: 0 4px 14px var(--green-glow);
 }
 
-/* Culori distincte per categorie de tab (chiar si pe inactiv apare un mic accent) */
+
 .bookings-tab.tab-upcoming svg {
   color: #3b82f6;
-} /* albastru - viitor */
+} 
 .bookings-tab.tab-past svg {
   color: #6b7280;
-} /* gri - trecut */
+} 
 .bookings-tab.tab-cancelled svg {
   color: #ef4444;
-} /* rosu - anulat */
+} 
 .bookings-tab.tab-all svg {
   color: #22c55e;
-} /* verde - toate */
+} 
 
-/* Anulate evidentiat in rosu si pe stare inactiva (text + border + badge) */
+
 .bookings-tab.tab-cancelled {
   color: #ef4444;
   border-color: rgba(239, 68, 68, 0.35);
@@ -58,17 +56,17 @@
   border-color: #ef4444;
   background: rgba(239, 68, 68, 0.06);
 }
-/* Pe stare ACTIVA: text alb (override-uim culoarea de mai sus) ca sa se vada pe fundalul rosu */
+
 .bookings-tab.tab-cancelled.active {
   color: var(--white) !important;
 }
-/* Badge-ul Anulate ramane rosu si cand tab-ul nu e activ */
+
 .bookings-tab.tab-cancelled .bookings-tab-badge:not(.active) {
   background: rgba(239, 68, 68, 0.12);
   color: #dc2626;
 }
 
-/* Pe activ, fiecare tab capata propriul gradient */
+
 .bookings-tab.tab-upcoming.active {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
@@ -85,12 +83,12 @@
   background: linear-gradient(135deg, #22c55e, #16a34a);
   box-shadow: 0 4px 14px var(--green-glow);
 }
-/* Pe activ, iconita devine alba pentru contrast */
+
 .bookings-tab.active svg {
   color: var(--white);
 }
 
-/* Badge cu numărul rezervărilor */
+
 .bookings-tab-badge {
   background: var(--bg);
   color: var(--text-muted);
@@ -112,7 +110,7 @@
   gap: 16px;
 }
 
-/* Cardul */
+
 .booking-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -124,7 +122,7 @@
 }
 
 .booking-card:hover {
-  /* transform gestionat de framer-motion în BookingCard (whileHover) */
+  
   box-shadow: var(--shadow-md);
 }
 
@@ -136,10 +134,10 @@
 }
 .booking-card-cancelled {
   border-left-color: #ef4444;
-} /* rosu, ca sa fie in ton cu badge-ul Anulata */
+} 
 .booking-card-completed {
   border-left-color: #3b82f6;
-} /* albastru pentru rezervari finalizate */
+} 
 
 .booking-card-header {
   display: flex;
@@ -185,7 +183,7 @@
   flex-wrap: wrap;
 }
 
-/* ===== BADGE-URI STATUS ===== */
+
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -257,7 +255,7 @@
   border: 1.5px solid var(--red);
 }
 
-/* Rol */
+
 .role-badge-admin {
   display: inline-flex;
   align-items: center;
@@ -282,7 +280,7 @@
   border: 1px solid #c7d2fe;
 }
 
-/* ===== PLATĂ ===== */
+
 .payment-result-card {
   max-width: 520px;
   margin: 80px auto;
@@ -320,7 +318,7 @@
   color: #92400e;
 }
 
-/* ===== TURNEELE MELE ===== */
+
 .my-tournament-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -457,7 +455,7 @@
   border-top: 1px solid var(--border);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .my-tournament-body {
     grid-template-columns: 1fr;

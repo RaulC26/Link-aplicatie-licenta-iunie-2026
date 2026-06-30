@@ -8,16 +8,16 @@ function PaymentSuccessPage() {
   const bookingId = searchParams.get("booking_id");
   const sessionId = searchParams.get("session_id");
 
-  // 'loading' | 'confirmed' | 'pending_webhook' | 'error'
+  
   const [status, setStatus] = useState("loading");
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     if (sessionId) {
-      // Apelăm /verify care verifică Stripe ȘI actualizează DB-ul + trimite emailul
+      
       confirmPayment();
     } else {
-      // Edge case: fără session_id (e.g. URL deschis manual) - afișăm succes generic
+      
       setStatus("confirmed");
     }
   }, [sessionId]);
@@ -26,7 +26,7 @@ function PaymentSuccessPage() {
     try {
       const token = getToken();
 
-      // Edge case: dacă nu e logat, afișăm succes generic (Stripe a confirmat deja)
+      
       if (!token) {
         setStatus("confirmed");
         return;
@@ -39,26 +39,26 @@ function PaymentSuccessPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        // Edge case: eroare la verificare, dar plata a fost procesată de Stripe
-        // Afișăm oricum succes - statusul se va actualiza la refresh
+        
+        
         console.error("Eroare la verificare:", data.mesaj);
         setStatus("confirmed");
         return;
       }
 
       if (data.status === "paid") {
-        // DB-ul a fost actualizat în backend (bookings → confirmed, email trimis)
+        
         setStatus("confirmed");
       } else if (data.status === "unpaid") {
-        // Edge case: sesiunea există dar plata nu a fost procesată (timeout etc.)
+        
         setStatus("error");
         setErrorMsg("Plata nu a fost procesată. Încearcă din nou.");
       } else {
-        // Orice alt status (no_payment_required etc.)
+        
         setStatus("confirmed");
       }
     } catch {
-      // Edge case: eroare de conexiune - Stripe a procesat deja, afișăm succes
+      
       setStatus("confirmed");
     }
   }
@@ -66,7 +66,7 @@ function PaymentSuccessPage() {
   return (
     <div className="page-container">
       <div className="payment-result-card">
-        {/* Starea de loading în timp ce verificăm cu Stripe */}
+        
         {status === "loading" && (
           <div style={{ textAlign: "center", padding: "20px 0" }}>
             <div
@@ -92,7 +92,7 @@ function PaymentSuccessPage() {
           </div>
         )}
 
-        {/* Plată confirmată cu succes */}
+        
         {status === "confirmed" && (
           <>
             <div className="payment-icon payment-icon-success"></div>
@@ -142,7 +142,7 @@ function PaymentSuccessPage() {
           </>
         )}
 
-        {/* Eroare la procesarea plății */}
+        
         {status === "error" && (
           <>
             <div className="payment-icon payment-icon-cancelled"></div>
